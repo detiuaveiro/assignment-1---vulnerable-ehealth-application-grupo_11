@@ -1,0 +1,73 @@
+Project 1 - eHealth Corp
+
+The frontend should show basic information regarding:
+- the services
+- the possibility to contact the clinic
+- request appointments with doctors
+- download test results by providing a code
+- Students may also add other functionality such as chat bots/helpdesk, videos, notifications, registration process, etc.
+
+Important info:
+- Students should provide a both a flawed and correct version of the application;
+- A report demonstrating how those vulnerabilities are explored and their impact;
+
+
+Application vulnerabilities:
+scores -> https://www.first.org/cvss/calculator/3.1
+
+top 25-> https://cwe.mitre.org/top25/archive/2022/2022_cwe_top25.html
+
+https://cwe.mitre.org/data/definitions/  INSERIR NUMERO   .html
+
+https://cwe.mitre.org/data/definitions/79.html
+
+- CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
+- CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+
+- CWE-434: Unrestricted Upload of File with Dangerous Type  -> dar Upload a virus
+- CWE-287: Improper Authentication                          -> poder ser medico sem provas
+- CWE-306: Missing Authentication for Critical Function     -> nao pedir login pra cenas importantes
+- CWE-798: Use of Hard-coded Credentials                    -> guardar as passwords e nao hash...
+- CWE-400: Uncontrolled Resource Consumption                -> dar Upload de ficheiros grandes
+(Verificar)
+
+
+
+USE CASES
+Doctor:
+- login/logout
+- view appointments
+- view test results
+- view patient information
+- add test results
+- add appointments
+- add patient information
+
+Patient:
+- login/logout
+- view appointments
+- view test results
+- request appointments
+- request test results
+- request patient information
+
+
+
+WEB PAGE:
+navbar:
+    home
+    medicos
+    appointments
+    help/duvidas
+    login
+
+navbar as patient:
+    + sitio especifico do cliente pra ver as suas coisas
+
+same para medicos
+
+medico -> mostra os medicos (da pra pesquisar por nome)
+(sql injection para mostrar outras cenas nos resultados)
+
+form de registo
+(cross site Scripting)
