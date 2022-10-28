@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Teste</h1>
+
+    <form method="post">
+        <div class="row">
+    
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" value="{{ request.form['username'] }}" required>
+
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" value="{{ request.form['email'] }}" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" value="{{ request.form['password'] }}" required>
+
+            <button class="btn btn-primary" type="submit">Add user</button>
+            <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+            
+        </div>
+    </form>
+
+  
+{% endblock content %}
