@@ -3,4 +3,76 @@
 {% block title %}Doctors{% endblock %}
 
 {% block content %}
+
+<div class="container" style="margin-top: 100px ;"> 
+
+    <!-- search for doctor name and show a table with name, email, specialty  -->
+
+    <div class="row" style="margin-top: 50px;">
+
+        <h2 class="col-12" style="text-align:center ;">Seach for a doctor</h2>
+
+        <div class="col-3"></div>
+
+        <div class ="col-6" style="width: 50%;">
+
+            <form action="/doctors" method="POST">
+
+                <div class="row">
+
+                    <div class="col-10">
+                    <input type="text" class="form-control" id="search" name="search" placeholder="Search for a doctor">
+                    </div>
+                    <div class="col-2">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+
+                </div>
+
+
+               
+
+            </form>
+
+        </div>
+
+        <div class="col-3"></div>
+
+    </div>
+
+    <div class="row" style="margin-top: 50px;">
+
+        <div class="col-3"></div>
+
+        <div class ="col-6" style="width: 50%;">
+
+            <div class="col-12">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Specialty</th>
+
+                      </tr>
+                    </thead>
+                    
+                    <!-- tbody hardcode with 1 examples -->
+
+                    <tbody>
+                        <tr>
+                            <td>Dr. John Doe</td>
+                            <td>John@gmail.com</td>
+                            <td>Cardiologist</td>
+                        </tr>
+                    </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="col-3"></div>
+
+</div>
+
 {% endblock %}

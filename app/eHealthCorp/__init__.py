@@ -40,7 +40,19 @@ def show_users():
 from eHealthCorp.views.index import index
 from eHealthCorp.views.login import login
 from eHealthCorp.views.register import register
+from eHealthCorp.views.reserved_area import reserved_area
+from eHealthCorp.views.make_appointment import make_appointment
+from eHealthCorp.views.my_appointments import my_appointments
+from eHealthCorp.views.test_results import test_results
+from eHealthCorp.views.feedback import feedback
+from eHealthCorp.views.doctors import doctors
 
 app.register_blueprint(index)
 app.register_blueprint(login)
 app.register_blueprint(register)
+app.register_blueprint(reserved_area)
+app.register_blueprint(make_appointment)
+app.register_blueprint(my_appointments)
+app.register_blueprint(test_results)
+app.register_blueprint(feedback)
+app.register_blueprint(doctors)

@@ -3,4 +3,96 @@
 {% block title %}Make Appointment{% endblock %}
 
 {% block content %}
+
+<div class="container" style="margin-top: 100px ;"> 
+
+    <div class="row" style="margin-top: 50px;">
+
+        <h2 class="col-12">Make an Appointment</h2>
+
+        <div class="col-12">
+
+            <form action="/make_appointment" method="POST">
+
+                <div class="mb-3">
+
+                    <label for="date" class="form-label">Date</label>
+
+                    <input type="date" class="form-control" id="date" name="date">
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label for="time" class="form-label">Time</label>
+
+                    <!-- form select with avaliable times -->
+
+                    <select class="form-select" aria-label="Default select example" id="time" name="time">
+
+                        <option selected>Choose a time</option>
+
+                        <option value="10:00">10:00</option>
+
+                        <option value="11:00">11:00</option>
+
+                        <option value="12:00">12:00</option>
+
+                        <option value="13:00">13:00</option>
+
+                        <option value="14:00">14:00</option>
+
+                        <option value="15:00">15:00</option>
+
+                        <option value="16:00">16:00</option>
+
+                        <option value="17:00">17:00</option>
+
+                        <option value="18:00">18:00</option>
+                    
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label for="type" class="form-label">Type</label>
+
+                    <select class="form-select" aria-label="Default select example" id="type" name="type">
+
+                        <option selected>Open this select menu</option>
+
+                        <option value="Cardiology">Cardiology</option>
+
+                        <option value="Dermatology">Dermatology</option>
+
+                        <option value="Gastroenterology">Gastroenterology</option>
+
+                        <option value="Neurology">Neurology</option>
+
+                        <option value="Ophthalmology">Ophthalmology</option>
+
+                        <option value="Otolaryngology">Otolaryngology</option>
+
+                        <option value="Pediatrics">Pediatrics</option>
+
+                        <option value="Psychiatry">Psychiatry</option>
+
+                        <option value="Urology">Urology</option>
+
+                    </select>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 {% endblock %}

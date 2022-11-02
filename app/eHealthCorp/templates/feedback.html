@@ -3,4 +3,54 @@
 {% block title %}Feedback{% endblock %}
 
 {% block content %}
+
+<div class="container" style="margin-top: 100px ;"> 
+
+    <div class="row" style="margin-top: 50px;">
+
+        <h2 class="col-12" style="text-align:center ;">Feedback</h2>
+
+        <h1>SHOW RANDOM SHIT</h1>
+
+        <div class="col-3"></div>
+        <div class ="col-6" style="width: 50%;">
+
+            <form action="/feedback" method="POST">
+
+                <div class="mb-3">
+
+                    <label for="name" class="form-label">Name</label>
+
+                    <input type="text" class="form-control" id="name" name="name">
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label for="email" class="form-label">Email</label>
+
+                    <input type="email" class="form-control" id="email" name="email">
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label for="message" class="form-label">Message</label>
+
+                    <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+        </div>
+        <div class="col-3"></div>
+
+    </div>
+
+        
+
+</div>
+
 {% endblock %}

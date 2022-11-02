@@ -3,4 +3,89 @@
 {% block title %}Reserved Area{% endblock %}
 
 {% block content %}
+
+<div class="container" style="margin-top: 100px ;"> 
+        <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+            <li class="nav-item col-6" role="presentation" >
+              <button class="nav-link active" id="shedule-tab" data-bs-toggle="tab" data-bs-target="#shedule-tab-pane" type="button" role="tab" aria-controls="shedule-tab-pane" aria-selected="true">Schedule</button>
+            </li>
+            <li class="nav-item col-6" role="presentation">
+              <button class="nav-link" id="testResults-tab" data-bs-toggle="tab" data-bs-target="#testResults-tab-pane" type="button" role="tab" aria-controls="testResults-tab-pane" aria-selected="false">Test Results</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="shedule-tab-pane" role="tabpanel" aria-labelledby="shedule-tab" tabindex="0">
+
+                <div class="row" style="margin-top: 50px;">
+                    
+                    <h2 class="col-12">Your Schedule</h2>
+
+                    <div class="col-12">
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Pacient</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">2021-05-20</th>
+                                <td>10:00</td>
+                                <td>Pacient 1</td>
+                                <td>Cardiology</td>
+                                <td>Confirmed</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2021-05-21</th>
+                                <td>11:00</td>
+                                <td>Pacient 1</td>
+                                <td>Cardiology</td>
+                                <td>Confirmed</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2021-05-22</th>
+                                <td>12:00</td>
+                                <td>Pacient 1</td>
+                                <td>Cardiology</td>
+                                <td>Confirmed</td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="testResults-tab-pane" role="tabpanel" aria-labelledby="testResults-tab" tabindex="0">
+
+                <!-- simple form with pacient name and place to upload a file -->
+
+                <div class="row" style="margin-top: 50px;">
+                    
+                    <h2 class="col-12" style="text-align: center; margin-bottom: 100px;">Upload Test Results</h2>
+
+                    <div class="col-6" style="margin: auto auto auto auto ;">
+                        <form>
+                            <div class="mb-3">
+                              <label for="pacientEmail" class="form-label">Pacient Email</label>
+                              <input type="text" class="form-control" id="pacientEmail" aria-describedby="pacientEmail">
+                            </div>
+                            <div class="mb-3">
+                              <label for="testResults" class="form-label">Test Results</label>
+                              <input class="form-control" type="file" id="testResults">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </form>
+                    </div>
+
+            </div>
+          </div>
+          
+</div>
+
 {% endblock %}
