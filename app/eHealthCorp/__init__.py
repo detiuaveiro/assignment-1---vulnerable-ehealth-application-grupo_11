@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 cursor = sqlite3.connect('./instance/db.sqlite3').cursor()
 
-from eHealthCorp.models import User
+from eHealthCorp.models.User import User
 
 
 @app.cli.command()
@@ -37,10 +37,10 @@ def show_users():
 
 
 # register the blueprints
-from eHealthCorp.home import home
-from eHealthCorp.login import login
-from eHealthCorp.register import register
+from eHealthCorp.views.index import index
+from eHealthCorp.views.login import login
+from eHealthCorp.views.register import register
 
-app.register_blueprint(home)
+app.register_blueprint(index)
 app.register_blueprint(login)
 app.register_blueprint(register)
