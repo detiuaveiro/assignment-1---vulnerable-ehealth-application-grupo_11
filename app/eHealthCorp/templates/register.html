@@ -2,46 +2,79 @@
 
 {% block content %}
 
-    <h1>Teste</h1>
 
-    <form method="post">
-        <div class="row">
+<div class="container"> 
+  <div class="account" style="width: 500px; margin: 200px auto 0 auto;">
+    <div class="card account-card">
 
-            <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" value="{{ request.form['username'] }}" required>
+      <div style="text-align: center; margin: 35px 0 10px 0;">
+        <h1 class="card-title">Register</h1>
+      </div>
 
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" value="{{ request.form['email'] }}" required>
-
-            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" value="{{ request.form['password'] }}" required>
-
-            <button class="btn btn-primary" type="submit">Add user</button>
-
-        </div>
-    </form>
-
-
-
-<body>
-    <!-- partial:index.partial.html -->
-    <div class="login-form">
-      <form>
-        <h1>Login</h1>
-        <div class="content">
-          <div class="input-field">
-            <input type="email" placeholder="Email" autocomplete="nope">
+      <div class="card-body py-5 px-md-5">
+        <form method="post">
+  
+          <div class="row">
+  
+            <div class="col-md-6 mb-4">
+              <div class="form-outline">
+                <label class="form-label" for="form3Example1">First name</label>
+                <input type="text" id="form3Example1" class="form-control" />
+              </div>
+            </div>
+  
+            <div class="col-md-6 mb-4">
+              <div class="form-outline">
+                <label class="form-label" for="form3Example2">Last name</label>
+                <input type="text" id="form3Example2" class="form-control" />
+              </div>
+            </div>
+  
           </div>
-          <div class="input-field">
-            <input type="password" placeholder="Password" autocomplete="new-password">
+  
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form3Example3">Email address</label>
+            <input type="email" id="form3Example3" class="form-control" />
           </div>
-          <a href="#" class="link">Forgot Your Password?</a>
-        </div>
-        <div class="action">
-          <button>Register</button>
-          <button>Sign in</button>
-        </div>
-      </form>
+  
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form3Example4">Password</label>
+            <input type="password" id="form3Example4" class="form-control" />
+          </div>
+  
+          <!-- Submit button -->
+          <div style="text-align: center; margin-top: 50px;">
+            <button type="submit" class="btn btn-primary btn-block mb-4">
+              Create account
+            </button>
+          </div>
+  
+      </div>
     </div>
+  </div>
+</div> 
+
+
+
+<!-- <div class="login-form">
+  <form>
+    <h1>Login</h1>
+    <div class="content">
+      <div class="input-field">
+        <input type="email" placeholder="Email" autocomplete="nope">
+      </div>
+      <div class="input-field">
+        <input type="password" placeholder="Password" autocomplete="new-password">
+      </div>
+      <a href="#" class="link">Forgot Your Password?</a>
+    </div>
+    <div class="action">
+      <button>Register</button>
+      <button>Sign in</button>
+    </div>
+  </form>
+</div> -->
 
 {% endblock content %}

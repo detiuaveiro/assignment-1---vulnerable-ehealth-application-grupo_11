@@ -1,7 +1,40 @@
 
 /* ----------- login page -----------  */
+.account {
+    width: 500px;
+}
 
-.login-page {
+.account-card {
+    box-shadow: 0 0px 8px rgba(0, 0, 0, .3);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*----------------- see later --------------*/
+/* .login-page {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -39,4 +72,4 @@ border: none;
 .action{
     
 margin-top:5%;
-}
+} */
