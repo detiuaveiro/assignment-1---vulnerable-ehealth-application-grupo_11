@@ -1,61 +1,60 @@
 {% extends 'base.html' %}
 
+{% block title %}Register{% endblock %}
+
 {% block content %}
 
+    <div class="container">
+        <div class="account" style="width: 500px; margin: 200px auto 0 auto;">
+            <div class="card account-card">
 
-<div class="container"> 
-  <div class="account" style="width: 500px; margin: 200px auto 0 auto;">
-    <div class="card account-card">
+                <div style="text-align: center; margin: 35px 0 10px 0;">
+                    <h1 class="card-title">Register</h1>
+                </div>
 
-      <div style="text-align: center; margin: 35px 0 10px 0;">
-        <h1 class="card-title">Register</h1>
-      </div>
+                <div class="card-body py-5 px-md-5">
+                    <form method="post">
 
-      <div class="card-body py-5 px-md-5">
-        <form method="post">
-  
-          <div class="row">
-  
-            <div class="col-md-6 mb-4">
-              <div class="form-outline">
-                <label class="form-label" for="form3Example1">First name</label>
-                <input type="text" id="form3Example1" class="form-control" />
-              </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="first_name">First name</label>
+                                    <input type="text" id="first_name" class="form-control" name="first_name" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="last_name">Last name</label>
+                                    <input type="text" id="last_name" class="form-control" name="last_name" required/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="email">Email address</label>
+                            <input type="email" id="email" class="form-control" name="email" required/>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="password">Password</label>
+                            <input type="password" id="password" class="form-control" name="password" required/>
+                        </div>
+
+                        <!-- Submit button -->
+                        <div style="text-align: center; margin-top: 50px;">
+                            <button type="submit" class="btn btn-primary btn-block mb-4">
+                                Create account
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-  
-            <div class="col-md-6 mb-4">
-              <div class="form-outline">
-                <label class="form-label" for="form3Example2">Last name</label>
-                <input type="text" id="form3Example2" class="form-control" />
-              </div>
-            </div>
-  
-          </div>
-  
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <label class="form-label" for="form3Example3">Email address</label>
-            <input type="email" id="form3Example3" class="form-control" />
-          </div>
-  
-          <!-- Password input -->
-          <div class="form-outline mb-4">
-            <label class="form-label" for="form3Example4">Password</label>
-            <input type="password" id="form3Example4" class="form-control" />
-          </div>
-  
-          <!-- Submit button -->
-          <div style="text-align: center; margin-top: 50px;">
-            <button type="submit" class="btn btn-primary btn-block mb-4">
-              Create account
-            </button>
-          </div>
-  
-      </div>
+        </div>
     </div>
-  </div>
-</div> 
 
+{% endblock content %}
 
 
 <!-- <div class="login-form">
@@ -76,5 +75,3 @@
     </div>
   </form>
 </div> -->
-
-{% endblock content %}

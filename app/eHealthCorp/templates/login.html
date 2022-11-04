@@ -4,105 +4,47 @@
 
 {% block content %}
 
+<div class="container">
+    <div class="account" style="width: 500px; margin: 200px auto 0 auto;">
+        <div class="card account-card">
 
-<div class="container" style="margin-top: 100px;"> 
-
-  <!-- login forms with bootstrap -->
-  <div class="login">
-    <div class="card login-card">
-
-      <div style="text-align: center; margin: 35px 0 10px 0;">
-        <h1 class="card-title">Login</h1>
-      </div>
-
-      <div class="card-body py-5 px-md-5">
-        <form method="post">
-  
-          <div class="row">
-  
-            <div class="col-md-6 mb-4">
-              <div class="form-outline">
-                <label class="form-label" for="form3Example1">First name</label>
-                <input type="text" id="form3Example1" class="form-control" />
-              </div>
+            <div style="text-align: center; margin: 35px 0 10px 0;">
+                <h1 class="card-title">Login</h1>
             </div>
-  
-            <div class="col-md-6 mb-4">
-              <div class="form-outline">
-                <label class="form-label" for="form3Example2">Last name</label>
-                <input type="text" id="form3Example2" class="form-control" />
-              </div>
+
+            <div class="card-body py-5 px-md-5">
+                <form method="post">
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Email address</label>
+                        <input type="email" id="email" class="form-control" name="email" required />
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" class="form-control" name="password" required />
+                    </div>
+
+                    <!-- Submit button -->
+                    <div style="text-align: center; margin-top: 50px;">
+                        <button type="submit" class="btn btn-primary btn-block mb-4">
+                            Create account
+                        </button>
+                    </div>
+                </form>
             </div>
-  
-          </div>
-  
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <label class="form-label" for="form3Example3">Email address</label>
-            <input type="email" id="form3Example3" class="form-control" />
-          </div>
-  
-          <!-- Password input -->
-          <div class="form-outline mb-4">
-            <label class="form-label" for="form3Example4">Password</label>
-            <input type="password" id="form3Example4" class="form-control" />
-          </div>
-  
-          <!-- Submit button -->
-          <div style="text-align: center; margin-top: 50px;">
-            <button type="submit" class="btn btn-primary btn-block mb-4">
-              Sign up
-            </button>
-          </div>
-  
-      </div>
-    </div>
-  </div>
-
-
-</div> 
-
-
-
-
-
-
-
-
-    <!--<div class="login-page">
-
-
-        <div class="forms-div">
-            
-            <form method="post">
-
-                <div class="login-form">
-                    <form>
-                      <h1 style="margin-bottom: 10%;">Login</h1>
-                      <div class="content">
-                        <div class="input-field">
-                          <input type="email" placeholder="Email">
-                        </div>
-                        <div class="input-field">
-                          <input type="password" placeholder="Password" autocomplete="new-password">
-                        </div>
-                        <a href="#" class="link">Forgot Your Password?</a>
-                      </div>
-                      <div class="action">
-                        <button>Register</button>
-                        <button>Sign in</button>
-                      </div>
-                    </form>
-                  </div>
-            </form>            
         </div>
+    </div>
+</div>
+
+{% endblock content %}
 
 
 
-    </div> -->
 
 <!-- <div class="center">
-
     <h1> Login </h1>
         <form method="post">
           <div class="txt_field">
@@ -121,7 +63,3 @@
             </form>
         </div> -->
 
- 
-
-  
-{% endblock content %}

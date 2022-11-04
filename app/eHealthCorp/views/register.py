@@ -13,18 +13,19 @@ def show():
     cur = conn.cursor()
 
     if request.method == "POST":
-        username = request.form["username"]
+        first_name = request.form["first_name"]
+        last_name = request.form["last_name"]
         email = request.form["email"]
         password = request.form["password"]
 
-        # print(f"NEW USER --- {username}, {email}, {password} ---")
+        # print(f"NEW USER --- {first_name} {last_name}, {email}, {password} ---")
 
-        cur.execute("INSERT INTO user (username, email, password) VALUES (?, ?, ?)", (username, email, password))
+        cur.execute("INSERT INTO user (email, password, first_name, last_name) VALUES (?, ?, ?)", (email, password, first_name, last_name))
         conn.commit()
         conn.close()
 
         # print("New user added to the database")
 
-        return render_template("home.html")
+        return render_template("index.html")
 
     return render_template("register.html")
