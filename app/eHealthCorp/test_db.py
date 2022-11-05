@@ -13,11 +13,13 @@ if __name__ == '__main__':
     cur.execute("INSERT INTO doctor VALUES(1, 'ola')")
     conn.commit()
 
+    print(cur.execute("SELECT * FROM user").fetchall())
+    print(cur.execute("SELECT * FROM doctor").fetchall())
+
     cur.execute("DELETE FROM user WHERE id=1")
     conn.commit()
 
     print(cur.execute("SELECT * FROM user").fetchall())
-
     print(cur.execute("SELECT * FROM doctor").fetchall())
 
     conn.close()
