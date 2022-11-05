@@ -2,13 +2,14 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 cursor = sqlite3.connect('./instance/db.sqlite3').cursor()
 
-from eHealthCorp.models.User import User
+from eHealthCorp.models import User
 
 
 @app.cli.command()
