@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register Doctor{% endblock %}
 
 {% block content %}
 
@@ -30,6 +30,12 @@
                             </div>
                         </div>
 
+                        <!-- specialization input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="specialization">Specialization</label>
+                            <input type="text" id="specialization" class="form-control" name="specialization" required/>
+                        </div>
+
                         <!-- Email input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="email">Email address</label>
@@ -48,10 +54,6 @@
                                 Create account
                             </button>
                         </div>
-
-                        <div style="text-align: center; margin-top: 20px">
-                            <a href="register_doctor">Are you a doctor? Create a doctor account!</a>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -59,23 +61,3 @@
     </div>
 
 {% endblock content %}
-
-
-<!-- <div class="login-form">
-  <form>
-    <h1>Login</h1>
-    <div class="content">
-      <div class="input-field">
-        <input type="email" placeholder="Email" autocomplete="nope">
-      </div>
-      <div class="input-field">
-        <input type="password" placeholder="Password" autocomplete="new-password">
-      </div>
-      <a href="#" class="link">Forgot Your Password?</a>
-    </div>
-    <div class="action">
-      <button>Register</button>
-      <button>Sign in</button>
-    </div>
-  </form>
-</div> -->

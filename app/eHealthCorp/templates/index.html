@@ -2,9 +2,16 @@
 
 {% block title %}eHealth-Corp{% endblock %}
 
+{% block status_btn %}
+  {% if ctx["user_id"] %}
+    <a href="logout" class="appointment-btn scrollto"><span class="d-none d-md-inline">Logout</span></a>
+  {% else %}
+    <a href="login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Login</span></a>
+  {% endif %}
+{% endblock %}
+
+
 {% block content %}
-
-
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
