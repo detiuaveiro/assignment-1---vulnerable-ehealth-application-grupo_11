@@ -26,7 +26,7 @@ class User(Base):
 class Doctor(Base):
     __tablename__ = 'doctor'
     id = Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), primary_key=True)
-    specialization = Column(db.String(length=30), nullable=False)
+    speciality = Column(db.String(length=30), nullable=False)
     __mapper_args__ = {
         'polymorphic_identity': 'doctor'
     }

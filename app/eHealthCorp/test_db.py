@@ -1,25 +1,32 @@
-import sqlite3
-import os
+import mysql.connector
 
 if __name__ == '__main__':
-    conn = sqlite3.connect('instance/db.sqlite3')
+    conn = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="root0",
+        database="eHealthCorp"
+    )
     cur = conn.cursor()
-    cur.execute("PRAGMA foreign_keys=ON")
 
-    cur.execute("INSERT INTO user (email, password, first_name, last_name, role) \
-                VALUES ('rfg@ua.pt', '1234', 'Rafael', 'G', 'doctor')")
+    cur.execute("INSERT INTO user (id, email, password, first_name, last_name, role) \
+                VALUES (1, 'rfg@ua.pt', '1234', 'Rafael', 'G', 'doctor')")
     conn.commit()
 
-    cur.execute("INSERT INTO doctor VALUES(1, 'ola')")
+    cur.execute("INSERT INTO doctor (id, speciality) VALUES(1, 'ola')")
     conn.commit()
 
-    print(cur.execute("SELECT * FROM user").fetchall())
-    print(cur.execute("SELECT * FROM doctor").fetchall())
+    cur.execute("SELECT * FROM user")
+    print(cur.fetchall())
+    cur.execute("SELECT * FROM doctor")
+    print(cur.fetchall())
 
     cur.execute("DELETE FROM user WHERE id=1")
     conn.commit()
 
-    print(cur.execute("SELECT * FROM user").fetchall())
-    print(cur.execute("SELECT * FROM doctor").fetchall())
+    cur.execute("SELECT * FROM user")
+    print(cur.fetchall())
+    cur.execute("SELECT * FROM doctor")
+    print(cur.fetchall())
 
     conn.close()

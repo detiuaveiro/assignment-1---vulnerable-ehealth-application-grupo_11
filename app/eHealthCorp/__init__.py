@@ -3,23 +3,22 @@ from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root0@localhost:3306/eHealthCorp"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
-cursor = sqlite3.connect('./instance/db.sqlite3').cursor()
 
 from eHealthCorp.models import *
 
 @app.cli.command()
 def create_db():
+    db.engine.execute("CREATE DATABASE IF NOT EXISTS eHealthCorp")
     db.create_all()
-    print('Database created!')
-
+    print("Database created!")
 
 @app.cli.command()
 def drop_db():
     db.drop_all()
-    print('Database deleted!')
+    print("Database deleted!")
 
 
 @app.cli.command()
