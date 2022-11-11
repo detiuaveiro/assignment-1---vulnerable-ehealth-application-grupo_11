@@ -33,21 +33,22 @@ class Doctor(Base):
 
 
 class Appointment(Base):
-    id = Column(db.Integer(), primary_key=True)
+    id = Column(db.Integer(), primary_key=True, autoincrement=True)
     patient_id = Column(db.Integer(), db.ForeignKey('user.id'))
     doctor_id = Column(db.Integer(), db.ForeignKey('doctor.id'))
-    date_time = Column(db.DateTime(), nullable=False)
+    scheduled_time = Column(db.DateTime(), nullable=False)
+
     description = Column(db.String(length=100), nullable=False)
 
 
 class Test(Base):
-    id = Column(db.Integer(), primary_key=True)
+    id = Column(db.Integer(), primary_key=True, autoincrement=True)
     patient_id = Column(db.Integer(), db.ForeignKey('user.id'))
-
+    
 
 class Feedback(Base):
-    # response to a test
-    id = Column(db.Integer(), primary_key=True)
+    # response to a test0
+    id = Column(db.Integer(), primary_key=True, autoincrement=True)
     test_id = Column(db.Integer(), db.ForeignKey('test.id'))
     doctor_id = Column(db.Integer(), db.ForeignKey('doctor.id'))
     description = Column(db.String(length=100), nullable=False)
