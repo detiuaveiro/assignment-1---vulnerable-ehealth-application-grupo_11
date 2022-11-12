@@ -9,7 +9,7 @@ services:
     environment:
       MYSQL_ROOT_HOST: '%'
       MYSQL_ROOT_PASSWORD: 'root0'
-      MYSQL_DATABASE: 'flaskapp'
+      MYSQL_DATABASE: 'eHealthCorp'
       MYSQL_USER: 'flask'
       MYSQL_PASSWORD: '1234'
     ports:

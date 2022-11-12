@@ -2,5 +2,16 @@
 
 If you want your instance to be initialized, you have to start from scratch. It is quite easy to do with docker compose when using a named volume like in your case. Warning: this will permanently delete the contents in your db_data volume, wiping out any previous database you had there. Create a backup first if you need to keep the contents.
 
+
+INICIAR:
+docker-compose up
+flask create-db
+flask run
+
+CLIENTE MYSQL (opcional):
+Client MySQL: docker exec -it flaskapp-mysql mysql -u root -p
+(introduzir a pass 'root0')
+
+DROPPAR:
+flask drop-db
 docker-compose down -v
-docker-compose up -d

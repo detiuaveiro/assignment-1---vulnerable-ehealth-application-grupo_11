@@ -72,3 +72,31 @@ medico -> mostra os medicos (da pra pesquisar por nome)
 
 form de registo
 (cross site Scripting)
+
+
+LEO: 
+- forms front-end
+- links
+(reserved rea)
+- schedule
+- medic post results
+
+RAFAEL:
+(patient area)
+- make an appointment
+- my appointments
+(doctors)
+- search doctor
+
+PEDRO:
+- login
+- logout
+- register
+- feedback
+(patient area)
+- test results
+
+ANZHELIKA:
+- contact
+- about
+- services
