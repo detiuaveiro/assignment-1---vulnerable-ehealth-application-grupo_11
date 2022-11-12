@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
 from flask import request
-from eHealthCorp import db
 
 make_appointment = Blueprint("/make_appointment", __name__, template_folder="templates")
 

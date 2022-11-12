@@ -1,4 +1,4 @@
-from eHealthCorp import db
+
 
 Base = db.Model  # SQLAlchemy ORM
 Column = db.Column
@@ -53,3 +53,4 @@ class Feedback(Base):
     doctor_id = Column(db.Integer(), db.ForeignKey('doctor.id'))
     description = Column(db.String(length=100), nullable=False)
     date_time = Column(db.DateTime(), nullable=False)
+

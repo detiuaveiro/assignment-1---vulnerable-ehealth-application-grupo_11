@@ -1,20 +1,7 @@
-from flask import (Blueprint, request, render_template, redirect, session, url_for)
-import mysql.connector
-from eHealthCorp import db
-from eHealthCorp.models import User
+from flask import (Blueprint, request, render_template, redirect, session, url_for,)
+from eHealthCorp import get_conn
 
 auth = Blueprint('auth', __name__)
-
-
-def get_conn():
-    conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="root0",
-        database="eHealthCorp"
-    )
-    cur = conn.cursor()
-    return conn, cur
 
 
 @auth.route('/register', methods=('GET', 'POST'))
@@ -27,15 +14,10 @@ def register():
         password = request.form["password"]
 
         try:
-            # create user
-            u = User()
-            u.first_name = first_name
-            u.last_name = last_name
-            u.email = email
-            u.password = password
-            db.session.add(u)
-            print("User added!")
-            db.session.commit()
+            conn, cur = get_conn()
+            cur.execute("INSERT INTO app_user (email, password_, first_name, last_name) VALUES (?, ?, ?, ?)", (email, password, first_name, last_name))
+            conn.commit()
+            conn.close()
         except:
             return render_template("register.html", ctx={"error": True, "error_desc": "This email already exists!"})
         else:
@@ -55,24 +37,18 @@ def register_doctor():
         password = request.form["password"]
 
         conn, cur = get_conn()
-        cmd = "INSERT INTO user (email, password, first_name, last_name, role) VALUES ('{}', '{}', '{}', '{}', '{}')".format(email, password, first_name, last_name, "patient")
-        print(cmd)
-        cur.execute(cmd)
+        cur.execute("INSERT INTO app_user (email, password_, first_name, last_name) VALUES (?, ?, ?, ?)", (email, password, first_name, last_name))
         conn.commit()
         conn.close()
         
 
         conn, cur = get_conn()
-        cmd = "SELECT id FROM user WHERE email = '{}'".format(email)
-        cur.execute(cmd)
-        result = cur.fetchone()
+        result = cur.execute("SELECT id FROM app_user WHERE email = ?", (email,)).fetchall()
         conn.close()
 
 
         conn, cur = get_conn()
-        cmd = "INSERT INTO doctor (id, specialization) VALUES ('{}', '{}')".format(result[0][0], specialization)
-        print(cmd)
-        cur.execute(cmd)
+        cur.execute("INSERT INTO doctor (id, specialization) VALUES (?, ?)", (result[0][0], specialization))
         conn.commit()
         conn.close()
 
@@ -82,11 +58,10 @@ def register_doctor():
 
 
 @auth.route('/login', methods=('GET', 'POST'))
-@auth.route('/login/', methods=('GET', 'POST'))
 def login():
 
     #if the user is already logged in
-    if session.get("user_id") != None:
+    if session.get("session_data") != None:
         return redirect(url_for("index.show"))
 
     if request.method == "POST":
@@ -94,7 +69,7 @@ def login():
         password = request.form["password"]
 
         conn, cur = get_conn()
-        query = f"SELECT * FROM user WHERE email = '{email}' AND password = '{password}'"
+        query = f"SELECT * FROM app_user WHERE email = '{email}' AND password_ = '{password}'"
         user = cur.execute(query).fetchone()
         conn.close()
 
@@ -102,10 +77,13 @@ def login():
             return render_template("login.html", ctx={"fail": True})
         else:
             session.clear()
-            session["user_id"] = user[0]
-            session["first_name"] = user[3]
-            session["last_name"] = user[4]
-            session["role"] = user[-1]
+            session_data = {
+                "user_id": user[0],
+                "first_name": user[3],
+                "last_name": user[4]
+            }
+            session["session_data"] = session_data
+
             return redirect(url_for("index.show"))
         
     return render_template("login.html")

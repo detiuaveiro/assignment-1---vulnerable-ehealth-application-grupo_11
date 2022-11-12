@@ -1,29 +1,55 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+import sqlite3
+
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root0@localhost:3306/eHealthCorp"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)
 
-from eHealthCorp.models import *
-
-@app.cli.command()
-def create_db():
-    db.engine.execute("CREATE DATABASE IF NOT EXISTS eHealthCorp")
-    db.create_all()
-    print("Database created!")
+def get_conn():
+    conn = sqlite3.connect('db.sqlite3')
+    cur = conn.cursor()
+    return conn, cur
 
 @app.cli.command()
-def drop_db():
-    db.drop_all()
-    print("Database deleted!")
-
+def reset_db():
+    conn = sqlite3.connect('db.sqlite3')
+    with open('eHealthCorp/schema.sql') as f:
+        conn.executescript(f.read())
+    conn.commit()
+    conn.close()
 
 @app.cli.command()
-def show_tables():
-    print(db.engine.table_names())
+def test_db():
+    conn, _ = get_conn()
+    conn.execute("INSERT INTO app_user (email, password_, first_name, last_name) VALUES (?, ?, ?, ?)", ("admin", "admin", "admin", "admin"))
+    conn.commit()
+    conn.close()
 
+@app.cli.command()
+def leo_query():
+    conn, cur = get_conn()
+    cur.execute("INSERT INTO app_user (email, password_, first_name, last_name) VALUES (?, ?, ?, ?)", ("leo@gmail.com", "leo", "leo", "leo"))
+    conn.commit()
+    cur.execute(f"INSERT INTO doctor (id, speciality) VALUES (1,'yes')")
+    conn.commit()
+    cur.execute(f"INSERT INTO appointment (doctor_id, date_, time_, patient_id, type_, status_) VALUES (1,'2020-12-12','12:00',1,'yes','yes')")
+    conn.commit()
+
+    
+    cur.execute("SELECT * FROM appointment WHERE doctor_id = 1")
+    appointments = cur.fetchall()
+
+    lst = []
+    for appointment in appointments:
+        lst.append({
+            'date' : appointment[2],
+            'time' : appointment[3],
+            'patient_email' : cur.execute("SELECT email FROM app_user WHERE id = ?", (appointment[4],)).fetchone()[0],
+            'type' : appointment[5],
+            'status' : appointment[6],
+        })
+    print(lst)
+    
+    conn.close()
 
 # register the blueprints
 from eHealthCorp.views.index import index
