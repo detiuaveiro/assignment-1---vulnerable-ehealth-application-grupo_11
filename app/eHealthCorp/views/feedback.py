@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, session, redirect, url_for, render_template_string
+from flask import Blueprint, request, render_template, session
 from eHealthCorp import get_conn
 from datetime import datetime
 
@@ -41,11 +41,3 @@ def show():
         })
 
     return render_template("feedback.html", feedback=feedback_lst)
-
-
-# conn, cur = get_conn()
-# sql = f"DELETE FROM feedback WHERE id = 1;"
-# cur.execute(sql)
-# conn.commit()
-# conn.close()
-# return "DELETED"

@@ -82,12 +82,14 @@ def login():
             exists = cur.execute("SELECT * FROM doctor WHERE id = ?", (user[0],)).fetchone()
             if exists == None:
                 type = "user"
+                id_ = user[0]
             else:
                 type = "doctor"
+                id_ = exists[0]
 
             session.clear()
             session_data = {
-                "id": user[0],
+                "id": id_,
                 "first_name": user[3],
                 "last_name": user[4],
                 "type": type

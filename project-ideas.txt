@@ -76,17 +76,17 @@ form de registo
 
 LEO: 
 - forms front-end
-- links
-(reserved rea)
+- links and pages
+(reserved area)
 - schedule
 - medic post results
+(doctors)
+- search doctor
 
 RAFAEL:
 (patient area)
 - make an appointment
 - my appointments
-(doctors)
-- search doctor
 
 PEDRO:
 - login ✅

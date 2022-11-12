@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS app_user;
 DROP TABLE IF EXISTS doctor;
 DROP TABLE IF EXISTS appointment;
-DROP TABLE IF EXISTS test;
+DROP TABLE IF EXISTS test_results;
 DROP TABLE IF EXISTS feedback;
 
 
@@ -33,18 +33,17 @@ CREATE TABLE appointment (
     FOREIGN KEY(doctor_id) REFERENCES doctor (id)
 );
 
-CREATE TABLE test (
+CREATE TABLE test_results (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    patient_id INTEGER NOT NULL,
-    FOREIGN KEY(patient_id) REFERENCES app_user (id)
+    patient_email VARCHAR(40) NOT NULL,
+    results_file text NOT NULL
+    -- FOREIGN KEY(patient_email) REFERENCES app_user (email)
 );
 
 CREATE TABLE feedback (
-    test_id INTEGER NOT NULL,
-    doctor_id INTEGER NOT NULL,
-    description_ VARCHAR(100) NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user INTEGER NOT NULL,
+    feedback VARCHAR(100) NOT NULL,
     date_time DATETIME NOT NULL,
-    FOREIGN KEY(test_id) REFERENCES test (id),
-    FOREIGN KEY(doctor_id) REFERENCES doctor (id),
-    PRIMARY KEY (test_id, doctor_id)
+    FOREIGN KEY(user) REFERENCES app_user (id)
 );

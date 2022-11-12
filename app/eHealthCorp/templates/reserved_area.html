@@ -23,7 +23,7 @@
                   <tr>
                     <th scope="col">Date</th>
                     <th scope="col">Time</th>
-                    <th scope="col">Pacient</th>
+                    <th scope="col">Patient</th>
                     <th scope="col">Type</th>
                     <th scope="col">Status</th>
                   </tr>
@@ -34,7 +34,7 @@
                     <tr>
                       <th scope="row">{{ appointment.date }}</th>
                         <td>{{ appointment.time }}</td>
-                        <td>{{ appointment.pacient_email }}</td>
+                        <td>{{ appointment.patient_email }}</td>
                         <td>{{ appointment.type }}</td>
                         <td>{{ appointment.status }}</td>
                     </tr>
@@ -47,21 +47,21 @@
     </div>
     <div class="tab-pane fade" id="testResults-tab-pane" role="tabpanel" aria-labelledby="testResults-tab" tabindex="0">
 
-    <!-- simple form with pacient email and place to upload a file -->
+    <!-- simple form with patient email and place to upload a file -->
 
     <div class="row" style="margin-top: 50px;">
         
       <h2 class="col-12" style="text-align: center; margin-bottom: 100px;">Upload Test Results</h2>
 
       <div class="col-6" style="margin: auto auto auto auto ;">
-        <form>
+        <form method="POST" enctype="multipart/form-data">
             <div class="mb-3">
-              <label for="pacientEmail" class="form-label">Pacient Email</label>
-              <input type="text" class="form-control" id="pacientEmail" aria-describedby="pacientEmail">
+              <label for="patientEmail" class="form-label">Patient Email</label>
+              <input type="text" class="form-control" id="patientEmail" aria-describedby="patientEmail" name="patient_email" required>
             </div>
             <div class="mb-3">
               <label for="testResults" class="form-label">Test Results</label>
-              <input class="form-control" type="file" id="testResults">
+              <input class="form-control" type="file" id="testResults" name="results_file" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

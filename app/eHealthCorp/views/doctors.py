@@ -8,18 +8,3 @@ doctors = Blueprint("/doctors", __name__, template_folder="templates")
 
 def show():
     return render_template("doctors.html")
-
-
-    # {% for doctor in doctors %}
-
-    #                 <tr>
-
-    #                     <td>{{ doctor.name }}</td>
-
-    #                     <td>{{ doctor.email }}</td>
-
-    #                     <td>{{ doctor.specialty }}</td>
-
-    #                 </tr>
-
-    #                 {% endfor %}
