@@ -32,8 +32,8 @@
 
                         <!-- specialization input -->
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="specialization">Specialization</label>
-                            <input type="text" id="specialization" class="form-control" name="specialization" required/>
+                            <label class="form-label" for="speciality">Speciality</label>
+                            <input type="text" id="speciality" class="form-control" name="speciality" required/>
                         </div>
 
                         <!-- Email input -->
@@ -47,6 +47,13 @@
                             <label class="form-label" for="password">Password</label>
                             <input type="password" id="password" class="form-control" name="password" required/>
                         </div>
+
+                        <!-- Error message -->
+                        {% if error %}
+                        <div style="text-align: center;">
+                            <a style="font-weight: bold; color: red">This email is already in use</a>
+                        </div>
+                        {% endif %}
 
                         <!-- Submit button -->
                         <div style="text-align: center; margin-top: 50px;">
