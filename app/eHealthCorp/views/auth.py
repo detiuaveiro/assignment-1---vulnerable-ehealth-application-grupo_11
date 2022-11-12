@@ -1,11 +1,18 @@
-from flask import (Blueprint, request, render_template, redirect, session, url_for, flash)
-import sqlite3
+from flask import (Blueprint, request, render_template, redirect, session, url_for)
+import mysql.connector
+from eHealthCorp import db
+from eHealthCorp.models import User
 
 auth = Blueprint('auth', __name__)
 
 
 def get_conn():
-    conn = sqlite3.connect('./instance/db.sqlite3')
+    conn = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="root0",
+        database="eHealthCorp"
+    )
     cur = conn.cursor()
     return conn, cur
 
@@ -20,10 +27,15 @@ def register():
         password = request.form["password"]
 
         try:
-            conn, cur = get_conn()
-            cur.execute("INSERT INTO user (email, password, first_name, last_name, role) VALUES (?, ?, ?, ?, ?)", (email, password, first_name, last_name, "patient"))
-            conn.commit()
-            conn.close()
+            # create user
+            u = User()
+            u.first_name = first_name
+            u.last_name = last_name
+            u.email = email
+            u.password = password
+            db.session.add(u)
+            print("User added!")
+            db.session.commit()
         except:
             return render_template("register.html", ctx={"error": True, "error_desc": "This email already exists!"})
         else:
@@ -43,18 +55,24 @@ def register_doctor():
         password = request.form["password"]
 
         conn, cur = get_conn()
-        cur.execute("INSERT INTO user (email, password, first_name, last_name, role) VALUES (?, ?, ?, ?, ?)", (email, password, first_name, last_name, "doctor"))
+        cmd = "INSERT INTO user (email, password, first_name, last_name, role) VALUES ('{}', '{}', '{}', '{}', '{}')".format(email, password, first_name, last_name, "patient")
+        print(cmd)
+        cur.execute(cmd)
         conn.commit()
         conn.close()
         
 
         conn, cur = get_conn()
-        result = cur.execute("SELECT id FROM user WHERE email = ?", (email,)).fetchall()
+        cmd = "SELECT id FROM user WHERE email = '{}'".format(email)
+        cur.execute(cmd)
+        result = cur.fetchone()
         conn.close()
 
 
         conn, cur = get_conn()
-        cur.execute("INSERT INTO doctor (id, specialization) VALUES (?, ?)", (result[0][0], specialization))
+        cmd = "INSERT INTO doctor (id, specialization) VALUES ('{}', '{}')".format(result[0][0], specialization)
+        print(cmd)
+        cur.execute(cmd)
         conn.commit()
         conn.close()
 
@@ -64,6 +82,7 @@ def register_doctor():
 
 
 @auth.route('/login', methods=('GET', 'POST'))
+@auth.route('/login/', methods=('GET', 'POST'))
 def login():
 
     #if the user is already logged in
