@@ -8,6 +8,24 @@
     box-shadow: 0 0px 8px rgba(0, 0, 0, .3);
 }
 
+.feedback-form {
+    border-style: solid;
+    padding: 30px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: rgb(207, 207, 207);
+    box-shadow: 0 0px 8px rgba(0, 0, 0, .3);
+}
+
+.feedback-comment {
+    background-color: whitesmoke;
+    height: auto;
+    border-style: solid;
+    padding: 10px 17px 10px 17px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: rgb(207, 207, 207); 
+}
 
 
 

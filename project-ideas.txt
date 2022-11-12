@@ -89,10 +89,10 @@ RAFAEL:
 - search doctor
 
 PEDRO:
-- login
-- logout
-- register
-- feedback
+- login ✅
+- logout ✅
+- register ✅
+- feedback ✅
 (patient area)
 - test results
 
