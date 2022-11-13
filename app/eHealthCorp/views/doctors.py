@@ -34,7 +34,9 @@ def show():
 
         try:
             doctors = cur.execute(
-                f"SELECT app_user.name_, app_user.email, doctor.speciality FROM (doctor JOIN app_user ON doctor.id = app_user.id) WHERE app_user.name_ LIKE '%{user_input}%'"
+                f"SELECT app_user.name_, app_user.email, doctor.speciality \
+                    FROM (doctor JOIN app_user ON doctor.id = app_user.id) \
+                    WHERE app_user.name_ LIKE '%{user_input}%'"
             ).fetchall()
             
             lst = []
@@ -46,7 +48,6 @@ def show():
                 })
 
         except Exception as e:
-            print(e)
-            return render_template("error.html", error="Error while fetching data")
+            return render_template("error.html", error=f"Error while fetching data : {str(e)}")
 
     return render_template("doctors.html", doctors=lst)

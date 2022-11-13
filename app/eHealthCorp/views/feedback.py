@@ -16,8 +16,7 @@ def show():
 
         #insert feedback into db 
         conn, cur = get_conn()
-        sql = f"INSERT INTO feedback (user, feedback, date_time) VALUES ('{user_id}', '{message}', '{time}');"
-        cur.execute(sql)
+        cur.execute("INSERT INTO feedback (user, feedback, date_time) VALUES (?, ?, ?);", (user_id, message, time))
         conn.commit()
         conn.close()
 

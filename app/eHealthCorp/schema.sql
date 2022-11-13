@@ -35,8 +35,8 @@ CREATE TABLE appointment (
 CREATE TABLE test_results (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     patient_email VARCHAR(40) NOT NULL,
-    results_file text NOT NULL
-    -- FOREIGN KEY(patient_email) REFERENCES app_user (email)
+    file_name_ VARCHAR(40) NOT NULL,
+    file_data NONE NOT NULL
 );
 
 CREATE TABLE feedback (

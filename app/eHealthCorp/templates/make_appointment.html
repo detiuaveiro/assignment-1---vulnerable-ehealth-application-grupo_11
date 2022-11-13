@@ -58,7 +58,7 @@
 
                     <label for="type" class="form-label">Type</label>
 
-                    <select class="form-select" aria-label="Default select example" id="type" name="type">
+                    <select class="form-select" aria-label="Default select example" id="type" name="type" onchange="refreshDoctors()">
 
                         <option selected>Open this select menu</option>
 
@@ -110,19 +110,21 @@
 <script>
     document.getElementById("patient_area").classList.add("active");
     // put doctors in select
-    var doctor = document.getElementById("doctor");
-    doctor.addEventListener("change", () => {
-        console.log("olaaa");
+    function refreshDoctors() {
+        var select = document.getElementById("doctor");
         {% for doctor in doctors %}
-        if (type == "{{ doctor.specialty }}") {
-            console.log("{{ doctor.name }}");
-            var option = document.createElement("option");
-            option.text = "{{ doctor.name }}";
-            option.value = "{{ doctor.id }}";
-            doctor.add(option);
-        }
+            console.log("{{ doctor.specialty }}"); 
+            {% comment %} empty string?????? {% endcomment %}
+            if (document.getElementById("type").value == "{{ doctor.specialty }}") {
+                console.log("match");
+                var option = document.createElement("option");
+                option.text = "{{ doctor.name }}";
+                option.value = "{{ doctor.id }}";
+                select.add(option);
+            }
         {% endfor %}
-    });
+    }
+
 </script>
 
 {% endblock %}

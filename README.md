@@ -12,7 +12,20 @@ Vulnerabilidades:
 
 - SQL Injection
     - login -> string (email e pass)
-    - doctors -> string (search)
+    - doctors -> string (search) e exceção para o html
     - register -> string + executescript
 - Cross-Site Scripting (XSS)
     - feedback -> nao tem scape
+- Use of Hard-coded Credentials
+    - register e login -> hardcoded
+- Improper Authentication
+    - register como medico
+- Unrestricted Upload of File with Dangerous Type
+- Uncontrolled Resource Consumption
+    - reserved_area -> upload de ficheiros maliciosos e grandes
+- Missing Authentication for Critical Function
+    - ....
+
+
+1' AND 1=2 UNION SELECT sql,1,1 FROM sqlite_master WHERE type='table' -- //
+1' AND 1=2 UNION SELECT name_, email, password_ FROM app_user -- // 

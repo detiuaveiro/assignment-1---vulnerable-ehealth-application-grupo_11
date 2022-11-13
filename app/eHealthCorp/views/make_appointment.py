@@ -12,7 +12,7 @@ def show():
 
     if session_ != 'user':
         return redirect(url_for('auth.login'))
-
+    
     conn, cur = get_conn()
 
     if request.method == "POST":
@@ -25,5 +25,14 @@ def show():
             'confirmed'
         ))
         conn.commit()
-    doctors = cur.execute("SELECT * FROM doctor").fetchall()
-    return render_template("make_appointment.html", doctors=doctors)
+    # select doctors and join with users
+    results = cur.execute("SELECT app_user.id, app_user.name_, doctor.speciality \
+                    FROM (doctor JOIN app_user ON doctor.id = app_user.id)").fetchall()
+    lst = []
+    for id_, name, speciality in results:
+        lst.append({
+            'id': id_,
+            'name': name,
+            'speciality': speciality # está a dar empty string
+        })
+    return render_template("make_appointment.html", doctors=lst)
