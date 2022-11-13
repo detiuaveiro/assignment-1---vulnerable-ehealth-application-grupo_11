@@ -29,9 +29,6 @@ def show():
 
         user_input = request.form['user_input']
 
-        # 1' AND 1=2 UNION SELECT sql,1,1 FROM sqlite_master WHERE type='table' -- //
-        # 1' AND 1=2 UNION SELECT name_, email, password_ FROM app_user -- //
-
         try:
             doctors = cur.execute(
                 f"SELECT app_user.name_, app_user.email, doctor.speciality \

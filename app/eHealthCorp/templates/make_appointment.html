@@ -12,7 +12,7 @@
 
         <div class="col-12">
 
-            <form action="/make_appointment" method="POST">
+            <form action="/my_appointments" method="POST">
 
                 <div class="mb-3">
 
@@ -56,11 +56,11 @@
 
                 <div class="mb-3">
 
-                    <label for="type" class="form-label">Type</label>
+                    <label for="speciality" class="form-label">Speciality</label>
 
-                    <select class="form-select" aria-label="Default select example" id="type" name="type" onchange="refreshDoctors()">
+                    <select class="form-select" aria-label="Default select example" id="speciality" name="speciality" onchange="refreshDoctors()">
 
-                        <option selected>Open this select menu</option>
+                        <option selected>Choose a speciality</option>
 
                         <option value="Cardiology">Cardiology</option>
 
@@ -111,11 +111,17 @@
     document.getElementById("patient_area").classList.add("active");
     // put doctors in select
     function refreshDoctors() {
-        var select = document.getElementById("doctor");
+        let select = document.getElementById("doctor");
+        let speciality = document.getElementById("speciality").value;
+        select.innerHTML = "";
+        var option = document.createElement("option");
+        option.text = "Choose a doctor";
+        option.value = "";
+        option.selected = true;
+        select.add(option);
+        if (speciality == "Choose a type") return;
         {% for doctor in doctors %}
-            console.log("{{ doctor.specialty }}"); 
-            {% comment %} empty string?????? {% endcomment %}
-            if (document.getElementById("type").value == "{{ doctor.specialty }}") {
+            if (speciality == "{{ doctor.speciality }}") {
                 console.log("match");
                 var option = document.createElement("option");
                 option.text = "{{ doctor.name }}";

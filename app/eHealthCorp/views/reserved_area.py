@@ -30,7 +30,10 @@ def show():
                 lst.append({
                     'date' : appointment[2],
                     'time' : appointment[3],
-                    'patient_email' : cur.execute("SELECT email FROM app_user WHERE id = ?", (appointment[4],)).fetchone()[0],
+                    'patient_email' : cur.execute(
+                        "SELECT email FROM app_user WHERE id = ?", 
+                        (appointment[4],)
+                    ).fetchone()[0],
                     'type' : appointment[5],
                     'status' : appointment[6],
                 })
@@ -42,17 +45,19 @@ def show():
     elif request.method == "POST":
         
         patient_email = request.form['patient_email']
-        file_path = request.files['results_file']
-
+        file = request.files['results_file']
 
         try:
-            results_file = file_path.stream.read()
- 
-            cur.execute("INSERT INTO test_results (patient_email, results_file) VALUES (?, ?)", (patient_email, results_file))
+            file_data = file.read()          
+            cur.execute(
+                "INSERT INTO test_results (patient_email, file_name_, file_data) VALUES (?, ?, ?)", 
+                (patient_email, file.filename, file_data)
+            )
+            code = 'EHC' + str(cur.lastrowid)
             conn.commit()
-            conn.close()
+            conn.close() 
 
         except:
             return render_template("error.html", error="Error while sending data")
 
-        return redirect(url_for('/reserved_area.show'))
+        return render_template("reserved_area.html", code=code)

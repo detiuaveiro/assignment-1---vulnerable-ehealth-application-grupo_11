@@ -13,23 +13,19 @@
         <h2 class="col-12" style="text-align:center ;">Test Results</h2>
 
         <div class="col-6" style="margin: auto auto auto auto ;">
-
             <form action="/test_results" method="POST">
-
                 <div class="mb-3">
-
-                    <label for="code" class="form-label">Code</label>
-
+                    <label for="code" class="form-label">Test code</label>
                     <input type="text" class="form-control" id="code" name="code">
-
+                    <!-- Error test not found -->
+                    {% if error %}
+                        <p style="color: red; margin-top: 0px; font-size: 14px;">This code is not valid</p>
+                    {% endif %}
                 </div>
 
-                <button type="submit" class="btn btn-primary">Download</button>
-
+                <button type="submit" class="btn btn-primary">Download test result</button>
             </form>
-
         </div>
-
 
 </div>
 

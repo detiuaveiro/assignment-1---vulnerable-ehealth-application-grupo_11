@@ -72,8 +72,10 @@ def login():
         password = request.form["password"]
 
         conn, cur = get_conn()
-        query = f"SELECT * FROM app_user WHERE email = '{email}' AND password_ = '{password}'"
-        user = cur.execute(query).fetchone()
+        user = cur.execute(
+            f"SELECT * FROM app_user \
+                WHERE ( email = '{email}' ) AND ( password_ = '{password}') "
+            ).fetchone()
         conn.close()
 
         if user == None:

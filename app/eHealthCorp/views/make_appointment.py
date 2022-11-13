@@ -17,12 +17,12 @@ def show():
 
     if request.method == "POST":
         cur.execute("INSERT INTO appointment (doctor_id, date_, time_, patient_id, type_, status_) VALUES (?, ?, ?, ?, ?, ?)",(
-            request.form['doctor_id'],
-            request.form['date_'],
-            request.form['time_'],
+            request.form['doctor'],
+            request.form['date'],
+            request.form['time'],
             id_,
-            request.form['type_'],
-            'confirmed'
+            request.form['speciality'],
+            'Confirmed'
         ))
         conn.commit()
     # select doctors and join with users
@@ -35,4 +35,5 @@ def show():
             'name': name,
             'speciality': speciality # está a dar empty string
         })
+    conn.close()
     return render_template("make_appointment.html", doctors=lst)

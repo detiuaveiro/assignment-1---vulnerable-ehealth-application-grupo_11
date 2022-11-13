@@ -17,6 +17,19 @@ def reset_db():
     conn.commit()
     conn.close()
 
+@app.cli.command()
+def test():
+    conn, cur = get_conn()
+
+    str_= "'  or 1=1 ) -- //"
+
+    print(
+        cur.execute(
+            f"SELECT * FROM app_user \
+                WHERE ( email = 'leo@gmail.com' ) AND ( password_ = '{str_}') "
+        ).fetchall()
+    )
+
 # register the blueprints
 from eHealthCorp.views.index import index
 from eHealthCorp.views.auth import auth
