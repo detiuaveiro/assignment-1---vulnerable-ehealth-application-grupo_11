@@ -35,17 +35,14 @@
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top" style="top: 0px;">
-    <div class="container d-flex align-items-center">
+    <div class="d-flex align-items-center" style="padding-left: 100px; padding-right: 100px">
 
       <h1 class="logo me-auto"><a href="/">eHealth-Corp</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="static/assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="nav-link scrollto" href="/" id="home">Home</a></li>
           <li><a class="nav-link scrollto" href="/reserved_area" id="reserved_area">Reserved Area</a></li>
-          <li><a class="nav-link scrollto" href="/doctors" id="doctors">Doctors</a></li>
           <li class="dropdown"><a href="" id="patient_area"><span>Patient Area</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="/make_appointment">Make an Appointment</a></li>
@@ -53,8 +50,9 @@
               <li><a href="/test_results">Test Results</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="/services" id="services">Services</a></li>
+          <li><a class="nav-link scrollto" href="/doctors" id="doctors">Doctors</a></li>
           <li><a class="nav-link scrollto" href="/feedback" id="feedback">Feedback</a></li>
+          <li><a class="nav-link scrollto" href="/services" id="services">Services</a></li>
           <li><a class="nav-link scrollto" href="/contact" id="contact">Contact</a></li>
           <li><a class="nav-link scrollto" href="/about" id="about">About</a></li>
         </ul>
@@ -71,7 +69,7 @@
   </header>
   <!-- End Header -->
 
-  <div style="margin-top: 80px;">
+  <div style="margin-top: 80px; margin-bottom: 80px;">
     {% block content %}{% endblock %}
   </div>
 
