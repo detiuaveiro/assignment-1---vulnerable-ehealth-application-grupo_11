@@ -31,11 +31,11 @@ def show():
 
         #get user info
         conn, cur = get_conn()
-        user = cur.execute("SELECT first_name, last_name FROM app_user WHERE id = ?", (m[1],)).fetchone()
+        user = cur.execute("SELECT name_ FROM app_user WHERE id = ?", (m[1],)).fetchone()
         conn.close()
 
         feedback_lst.append({
-            "author": f"{user[0]} {user[1]}",
+            "author": user[0],
             "message": m[2],
             "date_time": m[-1]
         })

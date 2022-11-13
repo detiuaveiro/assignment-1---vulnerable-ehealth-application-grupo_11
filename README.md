@@ -4,14 +4,15 @@ If you want your instance to be initialized, you have to start from scratch. It 
 
 
 INICIAR:
-docker-compose up
-flask create-db
-flask run
+flask reset-db
+python3 app.py
 
-CLIENTE MYSQL (opcional):
-Client MySQL: docker exec -it flaskapp-mysql mysql -u root -p
-(introduzir a pass 'root0')
 
-DROPPAR:
-flask drop-db
-docker-compose down -v
+Vulnerabilidades:
+
+- SQL Injection
+    - login -> string (email e pass)
+    - doctors -> string (search)
+    - register -> string + executescript
+- Cross-Site Scripting (XSS)
+    - feedback -> nao tem scape

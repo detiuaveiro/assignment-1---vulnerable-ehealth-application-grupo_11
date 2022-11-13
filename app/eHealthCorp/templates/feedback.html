@@ -4,6 +4,10 @@
 
 {% block content %}
 
+<script>
+    document.getElementById("feedback").classList.add("active");
+  </script>
+
 <div class="container" style="margin-top: 150px ;"> 
 
     <h1 class="col-12" style="text-align:center ;">Feedback</h1>
@@ -43,9 +47,12 @@
                         <!-- Feedback message -->
                         <div class="col-8 feedback-comment">
                             <p style="font-size: 14pt; font-weight: bold; margin-top: 0px; margin-bottom: 8px;">{{ msg.author }}</p>
-                            {% autoescape false %}
-                            {{msg.message}}
-                            {% endautoescape %}
+
+                            <p>
+                                {% autoescape false %}
+                                    {{msg.message}}
+                                {% endautoescape %}
+                            </p>
                             <div style="text-align: end;">
                                 <p style="font-size: 8pt; font-weight: lighter; margin: 0px;"> {{msg.date_time}}</p>
                             </div>

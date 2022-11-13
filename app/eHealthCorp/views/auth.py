@@ -12,10 +12,11 @@ def register():
         last_name = request.form["last_name"]
         email = request.form["email"]
         password = request.form["password"]
+        full_name = f"{first_name} {last_name}"
 
         try:
             conn, cur = get_conn()
-            cur.execute("INSERT INTO app_user (email, password_, first_name, last_name) VALUES (?, ?, ?, ?)", (email, password, first_name, last_name))
+            cur.execute("INSERT INTO app_user (email, password_, name_) VALUES (?, ?, ?)", (email, password, full_name))
             conn.commit()
             conn.close()
         except:
@@ -35,10 +36,11 @@ def register_doctor():
         speciality = request.form["speciality"]
         email = request.form["email"]
         password = request.form["password"]
+        full_name = f"{first_name} {last_name}"
 
         try:
             conn, cur = get_conn()
-            cur.execute("INSERT INTO app_user (email, password_, first_name, last_name) VALUES (?, ?, ?, ?)", (email, password, first_name, last_name))
+            cur.execute("INSERT INTO app_user (email, password_, name_) VALUES (?, ?, ?)", (email, password, full_name))
             conn.commit()
             conn.close()
         except:
@@ -90,8 +92,7 @@ def login():
             session.clear()
             session_data = {
                 "id": id_,
-                "first_name": user[3],
-                "last_name": user[4],
+                "name": user[-1],
                 "type": type
             }
             session["session_data"] = session_data

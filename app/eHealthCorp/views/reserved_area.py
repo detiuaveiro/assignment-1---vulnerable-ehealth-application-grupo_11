@@ -10,11 +10,10 @@ def show():
     session_ = False
     if 'session_data' in session:
         session_ = session['session_data']['type']
+        id_ = session['session_data']['id']
 
-    if session != 'doctor':
-        redirect(url_for('auth.login'))
-
-    id_ = session['session_data']['id']
+    if session_ != 'doctor':
+        return redirect(url_for('auth.login'))
 
     conn, cur = get_conn()
 

@@ -18,37 +18,11 @@ def reset_db():
     conn.close()
 
 @app.cli.command()
-def test_db():
-    conn, _ = get_conn()
-    conn.execute("INSERT INTO app_user (email, password_, first_name, last_name) VALUES (?, ?, ?, ?)", ("admin", "admin", "admin", "admin"))
+def populate_db():
+    conn = sqlite3.connect('db.sqlite3')
+    with open('eHealthCorp/data.sql') as f:
+        conn.executescript(f.read())
     conn.commit()
-    conn.close()
-
-@app.cli.command()
-def leo_query():
-    conn, cur = get_conn()
-    cur.execute("INSERT INTO app_user (email, password_, first_name, last_name) VALUES (?, ?, ?, ?)", ("leo@gmail.com", "leo", "leo", "leo"))
-    conn.commit()
-    cur.execute(f"INSERT INTO doctor (id, speciality) VALUES (1,'yes')")
-    conn.commit()
-    cur.execute(f"INSERT INTO appointment (doctor_id, date_, time_, patient_id, type_, status_) VALUES (1,'2020-12-12','12:00',1,'yes','yes')")
-    conn.commit()
-
-    
-    cur.execute("SELECT * FROM appointment WHERE doctor_id = 1")
-    appointments = cur.fetchall()
-
-    lst = []
-    for appointment in appointments:
-        lst.append({
-            'date' : appointment[2],
-            'time' : appointment[3],
-            'patient_email' : cur.execute("SELECT email FROM app_user WHERE id = ?", (appointment[4],)).fetchone()[0],
-            'type' : appointment[5],
-            'status' : appointment[6],
-        })
-    print(lst)
-    
     conn.close()
 
 # register the blueprints
@@ -75,3 +49,5 @@ app.register_blueprint(doctors)
 app.register_blueprint(services)
 app.register_blueprint(contact)
 app.register_blueprint(about)
+
+

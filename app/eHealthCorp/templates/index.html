@@ -12,10 +12,21 @@
 
 
 {% block content %}
+
+<script>
+  document.getElementById("home").classList.add("active");
+</script>
+
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
-      <h1>Welcome to eHealth-Corp</h1>
+
+      {% if session %}
+        <h1>Welcome, {{ session.session_data.name }}</h1>
+      {% else %}
+        <h1>Welcome to eHealth-Corp</h1>
+      {% endif %}
       <a href="/make_appointment" class="btn-get-started scrollto">Make an Appointment</a>
     </div>
   </section>
