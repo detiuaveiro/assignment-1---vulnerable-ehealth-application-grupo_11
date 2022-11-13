@@ -1,7 +1,6 @@
 from flask import (Blueprint, render_template, session, redirect, url_for, request)
 from eHealthCorp import get_conn
 
-import os
 
 reserved_area = Blueprint("/reserved_area", __name__, template_folder="templates")
 

@@ -11,7 +11,7 @@ login com user 1 (admin)
 
 
 register -> qualquer campo
-'; DROP TABLE app_user; -- //
+'); DROP TABLE app_user; -- //
 
 
 doctor -> search

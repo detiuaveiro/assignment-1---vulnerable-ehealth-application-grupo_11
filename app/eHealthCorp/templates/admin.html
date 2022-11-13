@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+
+    <div class="row">
+        <div style="margin-top: 30px ;"></div>
+        <div class="col-3" style="padding: 0 10px 0 10px">
+            <button class="btn btn-secondary " onclick="{
+            document.getElementById('query').value = 'SELECT * FROM app_user'
+            }" style="width: 100%;">View users table</button>
+        </div>
+
+        <div class="col-3" style="padding: 0 10px 0 10px">
+            <button class="btn btn-secondary " onclick="{
+            document.getElementById('query').value = 'SELECT * FROM doctor'
+            }"  style="width: 100%;">View doctor table</button>
+        </div>
+
+        <div class="col-3" style="padding: 0 10px 0 10px">
+            <button class="btn btn-secondary " onclick="{
+            document.getElementById('query').value = 'SELECT * FROM appointment'
+            }"  style="width: 100%;">View appointment table</button>
+        </div>
+
+        <div class="col-3" style="padding: 0 10px 0 10px">
+            <button class="btn btn-secondary " onclick="{
+            document.getElementById('query').value = 'SELECT * FROM feedback'
+            }"  style="width: 100%;">View feedback table</button>
+        </div>
+        
+    </div>
+
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="row">
+
+            <div style="margin: 50px 0 20px 0 ; text-align: center;"> 
+                <h3>Enter your query here</h3>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-8">
+                <input type="text" class="form-control" name="query" id="query" style="width: 100% ;" required
+                placeholder="Query"> 
+            </div>
+        </div>
+
+        
+        <div class="row" style="margin-top: 50px ;">
+            <hr/>
+            <h1 class="col-10">{{ title }}</h1>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary" style="width: 80%; height: 50px;">Submit</button>
+            </div>
+        </div>
+
+
+    </form>
+
+    <div>        
+        <hr/>
+        <table class="table table-striped">
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    {% for col in row %}
+                    <td>{{ col }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

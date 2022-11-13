@@ -21,18 +21,16 @@ def reset_db():
 def test():
     conn, cur = get_conn()
 
-    str_= "'  or 1=1 ) -- //"
-
     print(
         cur.execute(
-            f"SELECT * FROM app_user \
-                WHERE ( email = 'leo@gmail.com' ) AND ( password_ = '{str_}') "
+            f"SELECT * FROM app_user "
         ).fetchall()
     )
 
 # register the blueprints
 from eHealthCorp.views.index import index
 from eHealthCorp.views.auth import auth
+from eHealthCorp.views.admin_ import admin_ 
 from eHealthCorp.views.reserved_area import reserved_area
 from eHealthCorp.views.make_appointment import make_appointment
 from eHealthCorp.views.my_appointments import my_appointments
@@ -45,6 +43,7 @@ from eHealthCorp.views.about import about
 
 app.register_blueprint(index)
 app.register_blueprint(auth)
+app.register_blueprint(admin_)
 app.register_blueprint(reserved_area)
 app.register_blueprint(make_appointment)
 app.register_blueprint(my_appointments)

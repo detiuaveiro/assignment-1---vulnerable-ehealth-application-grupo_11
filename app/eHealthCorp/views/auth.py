@@ -16,7 +16,8 @@ def register():
 
         try:
             conn, cur = get_conn()
-            cur.execute("INSERT INTO app_user (email, password_, name_) VALUES (?, ?, ?)", (email, password, full_name))
+            query = f"INSERT INTO app_user (email, password_, name_) VALUES ('{email}', '{password}', '{full_name}');"
+            cur.executescript(query)
             conn.commit()
             conn.close()
         except:
@@ -99,6 +100,8 @@ def login():
             }
             session["session_data"] = session_data
 
+            if id_ == 1:
+                return redirect(url_for("admin_.admin"))
             return redirect(url_for("index.show"))
         
     return render_template("login.html")
