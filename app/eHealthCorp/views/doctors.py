@@ -1,8 +1,6 @@
 from flask import (Blueprint, render_template, session, redirect, url_for, request)
 from eHealthCorp import get_conn
 
-
-
 doctors = Blueprint("/doctors", __name__, template_folder="templates")
 
 @doctors.route("/doctors", methods=["GET", "POST"])

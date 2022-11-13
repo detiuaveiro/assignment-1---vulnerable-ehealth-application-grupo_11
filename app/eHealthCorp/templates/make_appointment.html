@@ -84,6 +84,18 @@
 
                 </div>
 
+                <div class="mb-3">
+
+                    <label for="doctor" class="form-label">Doctor</label>
+
+                    <select class="form-select" aria-label="Default select example" id="doctor" name="doctor">
+
+                        <option selected>Choose a doctor</option>
+
+                    </select>
+                
+                </div>
+
                 <button type="submit" class="btn btn-primary">Submit</button>
 
             </form>
@@ -97,6 +109,20 @@
 
 <script>
     document.getElementById("patient_area").classList.add("active");
+    // put doctors in select
+    var doctor = document.getElementById("doctor");
+    doctor.addEventListener("change", () => {
+        console.log("olaaa");
+        {% for doctor in doctors %}
+        if (type == "{{ doctor.specialty }}") {
+            console.log("{{ doctor.name }}");
+            var option = document.createElement("option");
+            option.text = "{{ doctor.name }}";
+            option.value = "{{ doctor.id }}";
+            doctor.add(option);
+        }
+        {% endfor %}
+    });
 </script>
 
 {% endblock %}

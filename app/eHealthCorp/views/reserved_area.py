@@ -47,11 +47,7 @@ def show():
 
         try:
             results_file = file_path.stream.read()
-            # print(results_file)
-
-            # print("\n\n\n")
-            # print(dir(file_path.stream))
-            
+ 
             cur.execute("INSERT INTO test_results (patient_email, results_file) VALUES (?, ?)", (patient_email, results_file))
             conn.commit()
             conn.close()

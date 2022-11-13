@@ -17,14 +17,6 @@ def reset_db():
     conn.commit()
     conn.close()
 
-@app.cli.command()
-def populate_db():
-    conn = sqlite3.connect('db.sqlite3')
-    with open('eHealthCorp/data.sql') as f:
-        conn.executescript(f.read())
-    conn.commit()
-    conn.close()
-
 # register the blueprints
 from eHealthCorp.views.index import index
 from eHealthCorp.views.auth import auth
