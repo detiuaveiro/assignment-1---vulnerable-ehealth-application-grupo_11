@@ -22,7 +22,7 @@
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
 
-      {% if session %}
+      {% if 'session_data' in session %}
         <h1>Welcome, {{ session.session_data.name }}</h1>
       {% else %}
         <h1>Welcome to eHealth-Corp</h1>

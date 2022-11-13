@@ -1,13 +1,16 @@
 from flask import Flask
 import sqlite3
-
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
+
 
 def get_conn():
     conn = sqlite3.connect('db.sqlite3')
     cur = conn.cursor()
     return conn, cur
+
 
 @app.cli.command()
 def reset_db():

@@ -21,6 +21,9 @@
             <h6 style="margin-top: 20px; margin-bottom: 15px">You can fill out this form in order to add a new feedback.</h6>
             <div class="feedback-form">
                 <form action="/feedback" method="POST">
+
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
                     <!-- Message -->
                     <div class="mb-3">
                         <label for="message" class="form-label">Message</label>
