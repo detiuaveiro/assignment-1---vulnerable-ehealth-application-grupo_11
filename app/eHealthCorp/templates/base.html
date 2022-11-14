@@ -60,7 +60,26 @@
 
 
       {% if 'session_data' in session %}
-        <a href="/logout" class="appointment-btn scrollto"><span class="d-none d-md-inline">Logout</span></a>
+      <label class="dropdown">
+
+        <div class="dd-button">
+          {{ session.session_data.name }}
+        </div>
+      
+        <input type="checkbox" class="dd-input" id="test">
+      
+        <ul class="dd-menu">
+          <li>
+            <a href="/settings">Account settings</a>
+          </li>
+          
+          <li class="divider"></li>
+          <li>
+            <a href="/logout">Logout</a>
+          </li>
+        </ul>
+        
+      </label>
       {% else %}
         <a href="/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Login</span></a>
       {% endif %}

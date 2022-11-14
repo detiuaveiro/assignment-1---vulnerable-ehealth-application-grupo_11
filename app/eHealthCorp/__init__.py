@@ -24,6 +24,7 @@ def reset_db():
 # register the blueprints
 from eHealthCorp.views.index import index
 from eHealthCorp.views.auth import auth
+from eHealthCorp.views.settings import settings
 from eHealthCorp.views.admin_ import admin_ 
 from eHealthCorp.views.reserved_area import reserved_area
 from eHealthCorp.views.make_appointment import make_appointment
@@ -35,6 +36,7 @@ from eHealthCorp.views.services import services
 from eHealthCorp.views.contact import contact
 
 app.register_blueprint(index)
+app.register_blueprint(settings)
 app.register_blueprint(auth)
 app.register_blueprint(admin_)
 app.register_blueprint(reserved_area)
