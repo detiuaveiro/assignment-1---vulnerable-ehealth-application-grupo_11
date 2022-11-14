@@ -4,9 +4,9 @@
 ---
 ## Descrição
 
-Na página de feedback, o usuário pode inserir um texto que será exibido nesta. O texto é inserido no HTML da página, sem qualquer tratamento.
+Na página *Feedback*, o utilizador pode inserir um texto que será exibido nesta. O texto é inserido no HTML da página, sem qualquer tratamento.
 
-Exemplo:
+Código exemplo:
 ```html
 {% for msg in feedback %}
     <p>
@@ -17,25 +17,29 @@ Exemplo:
 {% endfor %}
 ```
 
-Isso permite que o usuário insira código HTML, que será executado pelo navegador.
+Isso permite que o utilizador insira código HTML, que será executado pelo navegador.
 
 ---
 ## Explorar a vulnerabilidade
 
 Para explorar a vulnerabilidade, basta inserir um texto com código HTML na mensagem de feedback.
 
-Exemplo:
+Código exemplo:
 ```html
 <script>alert('XSS')</script>
 ```
 
 # TODO -> Mostrar screenshots
 
+Desta forma, o utilizador consegue fazer vários ataques XSS, como por exemplo:
+- Ler cookies do utilizador (por exemplo, o cookie de sessão) e enviá-los para um servidor remoto
+
 ---
 ## Solução
 
-Para corrigir esse problema, é necessário que o texto seja tratado antes de ser inserido no HTML. Para isso, é possível utilizar o filtro `escape` do Flask, neste caso, como é feito automaticamente, basta remover o `autoescape` do código.
+Para corrigir esse problema, é necessário que o texto seja tratado antes de ser inserido no HTML. Para isso, é possível utilizar o filtro `escape` do Flask, neste caso, como é feito automaticamente, basta remover o `autoescape false` do código.
 
+Código exemplo:
 ```html
 {% for msg in feedback %}
     <p>
