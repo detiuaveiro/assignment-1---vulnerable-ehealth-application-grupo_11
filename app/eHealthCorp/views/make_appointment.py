@@ -25,6 +25,8 @@ def show():
             'Confirmed'
         ))
         conn.commit()
+        return redirect(url_for('/my_appointments.show'))
+
     # select doctors and join with users
     results = cur.execute("SELECT app_user.id, app_user.name_, doctor.speciality \
                     FROM (doctor JOIN app_user ON doctor.id = app_user.id)").fetchall()

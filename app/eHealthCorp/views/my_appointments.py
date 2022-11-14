@@ -23,10 +23,16 @@ def show():
         conn.close()
         lst = []
         for date, time, doctor, type_, status in resultados:
+
+            #get doctor name
+            conn, cur = get_conn()
+            doctor_name = cur.execute("SELECT name_ FROM app_user WHERE id = ?;", (doctor,)).fetchone()[0]
+            conn.close()
+
             lst.append({
                 'date': date,
                 'time': time,
-                'doctor': doctor,
+                'doctor': f"Dr. {doctor_name}",
                 'type': type_,
                 'status': status
             })

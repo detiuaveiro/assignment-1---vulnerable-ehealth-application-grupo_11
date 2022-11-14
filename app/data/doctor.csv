@@ -1,12 +1,12 @@
 id,speciality
-2,Especialidades
+2,General
 3,Otolaryngology
 4,Neurology
 5,Psychiatry
 6,Neurology
 7,Ophthalmology
 8,Ophthalmology
-9,Especialidades
+9,General
 10,Dermatology
 11,Urology
 12,Urology
@@ -35,7 +35,7 @@ id,speciality
 35,Dermatology
 36,Cardiology
 37,Psychiatry
-38,Especialidades
+38,General
 39,Otolaryngology
 40,Gastroenterology
 41,Dermatology
@@ -45,10 +45,10 @@ id,speciality
 45,Gastroenterology
 46,Gastroenterology
 47,Cardiology
-48,Especialidades
+48,General
 49,Ophthalmology
 50,Urology
-51,Especialidades
+51,General
 52,Cardiology
 53,Psychiatry
 54,Psychiatry
@@ -73,7 +73,7 @@ id,speciality
 73,Cardiology
 74,Gastroenterology
 75,Psychiatry
-76,Especialidades
+76,General
 77,Dermatology
 78,Dermatology
 79,Psychiatry
@@ -84,7 +84,7 @@ id,speciality
 84,Neurology
 85,Cardiology
 86,Dermatology
-87,Especialidades
+87,General
 88,Gastroenterology
 89,Dermatology
 90,Urology
