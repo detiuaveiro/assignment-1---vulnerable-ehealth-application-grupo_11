@@ -33,7 +33,6 @@ from eHealthCorp.views.feedback import feedback
 from eHealthCorp.views.doctors import doctors
 from eHealthCorp.views.services import services
 from eHealthCorp.views.contact import contact
-from eHealthCorp.views.about import about
 
 app.register_blueprint(index)
 app.register_blueprint(auth)
@@ -46,6 +45,5 @@ app.register_blueprint(feedback)
 app.register_blueprint(doctors)
 app.register_blueprint(services)
 app.register_blueprint(contact)
-app.register_blueprint(about)
 
 
