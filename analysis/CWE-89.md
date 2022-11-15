@@ -11,7 +11,7 @@ Esta vulnerabilidade está presente em 3 páginas do website:
 - Register
 - Doctors
 
-Código exemplo:
+**Código exemplo**:
 ```python
 conn = sqlite3.connect('db.sqlite3')
 cur = conn.cursor()
@@ -102,7 +102,7 @@ O flask permite fazer esse tratamento se inserirmos as variaveis com os métodos
 
 Também devemos mudar o método de execução no *register* para executar apenas uma query.
 
-Código exemplo:
+**Código exemplo**:
 ```python
 conn = sqlite3.connect('db.sqlite3')
 cur = conn.cursor()

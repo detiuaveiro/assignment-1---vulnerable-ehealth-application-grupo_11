@@ -44,13 +44,13 @@ def show():
     elif request.method == "POST":
         
         patient_email = request.form['patient_email']
-        file = request.files['results_file']
+        file_ = request.files['results_file']
 
         try:
-            file_data = file.read()          
+            file_data = file_.read()          
             cur.execute(
                 "INSERT INTO test_results (patient_email, file_name_, file_data) VALUES (?, ?, ?)", 
-                (patient_email, file.filename, file_data)
+                (patient_email, file_.filename, file_data)
             )
             code = 'EHC' + str(cur.lastrowid)
             conn.commit()
