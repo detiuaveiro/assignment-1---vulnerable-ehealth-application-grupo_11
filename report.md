@@ -9,7 +9,7 @@ A aplicação tem como alvo final as seguintes entidades:
 2. Médico
 
 Através da aplicação, tanto médicos como pacientes podem:
-- Registar-se na
+- Registar-se
 - Login
 - Logout
 - Alterar definições de conta (alterar password)
@@ -31,5 +31,9 @@ Os médicos têm acesso às seguintes funcionalidades:
 
 
 ## Vulnerabilidades da aplicação
+
+Para fins educacionais foram desenvolvidas duas versões da aplicação, uma versão segura e uma versão insegura.
+
+Ao longo deste
 
 "After reading the report, a reader should be able to understand the application, the vulnerabilities, their exploration and impact, and how they can be avoided."
