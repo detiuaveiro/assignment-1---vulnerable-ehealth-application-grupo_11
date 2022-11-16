@@ -57,9 +57,7 @@
                             <p style="font-size: 14pt; font-weight: bold; margin-top: 0px; margin-bottom: 8px;">{{ msg.author }}</p>
 
                             <p>
-                                {% autoescape false %}
-                                    {{msg.message}}
-                                {% endautoescape %}
+                                {{msg.message|safe}}
                             </p>
                             <div style="text-align: end;">
                                 <p style="font-size: 8pt; font-weight: lighter; margin: 0px;"> {{msg.date_time}}</p>

@@ -11,9 +11,7 @@ Na página *Feedback* da nossa aplicação, o utilizador insere um texto, que se
 ```jinja
 {% for msg in feedback %}
     <p>
-        {% autoescape false %}
-            {{msg.message}}
-        {% endautoescape %}
+        {{ msg.message | safe }}
     </p>
 {% endfor %}
 ```
@@ -36,13 +34,13 @@ Para esse efeito, basta inserir um texto com código HTML na mensagem de feedbac
 ---
 ## Solução
 
-Para corrigir este problema, é necessário que o texto seja tratado, antes de ser apresentado. O Flask disponibiliza um filtro ```escape```, com esse intuito, pelo que nos bastou remover o ```autoescape false``` do código, para que ele funcionasse.
+Para corrigir este problema, é necessário que o texto seja tratado, antes de ser apresentado. Nesse sentido, o Jinja (mecanismo de templating que o Flask usa) ativa o *autoescaping*, por defeito, para todas as páginas HTML renderizadas com o método ```render_template()```, algo que é imcompatível com o filtro ```safe```, que identifica um excerto dinâmico de HTML como seguro.
 
 **Código exemplo**:
 ```jinja
 {% for msg in feedback %}
     <p>
-        {{msg.message}}
+        {{ msg.message }}
     </p>
 {% endfor %}
 ```
