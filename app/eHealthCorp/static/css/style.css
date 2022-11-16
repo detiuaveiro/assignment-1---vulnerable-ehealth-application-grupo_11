@@ -101,3 +101,11 @@
   }
 
 
+/*----------- disabled inputs -----------*/
+.disinput {
+  background-color: rgb(225, 224, 224) !important;
+}
+
+.disinput:hover {
+  cursor: not-allowed;
+}
