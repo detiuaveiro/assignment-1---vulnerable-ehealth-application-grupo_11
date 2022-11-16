@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}My Appointments{% endblock %}
+
+{% block content %}
+
+<div class="container" style="margin-top: 120px;"> 
+
+
+    <!-- table with appoitments (date time doctor type status) -->
+
+    <div class="row" style="margin-top: 50px;">
+
+        <h2 class="col-12" style="margin-bottom: 40px;">My Appointments</h2>
+
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Doctor</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                    <!-- hard coded -->
+
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.date }}</td>
+                        <td>{{ appointment.time }}</td>
+                        <td>{{ appointment.doctor }}</td>
+                        <td>{{ appointment.type }}</td>
+                        <td>{{ appointment.status }}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+</div>
+
+
+<script>
+    document.getElementById("patient_area").classList.add("active");
+</script>
+{% endblock %}

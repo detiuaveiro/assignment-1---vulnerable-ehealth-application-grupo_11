@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Register Doctor{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="account" style="width: 500px; margin: 200px auto 0 auto;">
+            <div class="card account-card">
+
+                <div style="text-align: center; margin: 35px 0 10px 0;">
+                    <h1 class="card-title">Register</h1>
+                </div>
+
+                <div class="card-body py-5 px-md-5">
+                    <form method="post">
+
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="first_name">First name</label>
+                                    <input type="text" id="first_name" class="form-control" name="first_name" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="last_name">Last name</label>
+                                    <input type="text" id="last_name" class="form-control" name="last_name" required/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- specialization input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="speciality">Speciality</label>
+                            <select class="form-select" aria-label="Default select example" id="speciality" name="speciality">
+                                <option selected>Choose a speciality</option>
+                                <option value="General">General</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Dermatology">Dermatology</option>
+                                <option value="Gastroenterology">Gastroenterology</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Ophthalmology">Ophthalmology</option>
+                                <option value="Otolaryngology">Otolaryngology</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="Psychiatry">Psychiatry</option>
+                                <option value="Urology">Urology</option>
+                            </select>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="email">Email address</label>
+                            <input type="email" id="email" class="form-control" name="email" required/>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="password">Password</label>
+                            <input type="password" id="password" class="form-control" name="password" required/>
+                        </div>
+
+                        <!-- Error message -->
+                        {% if error %}
+                        <div style="text-align: center;">
+                            <a style="font-weight: bold; color: red">This email is already in use</a>
+                        </div>
+                        {% endif %}
+
+                        <!-- Submit button -->
+                        <div style="text-align: center; margin-top: 50px;">
+                            <button type="submit" class="btn btn-primary btn-block mb-4">
+                                Create account
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

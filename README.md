@@ -38,4 +38,4 @@
 
 [CWE-862: Missing Authorization](analysis/CWE-862.md)
 
->*Obs*: Cada link remete para a análise de uma vulnerabilidade.
+>*Obs*: Cada link remete para a análise de uma vulnerabilidade. A descrição, o score e a solução encontrada para cada uma delas encontram-se no [relatório](report.md).

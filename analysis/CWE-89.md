@@ -29,7 +29,8 @@ cur.executescript(
 doctors = cur.execute(
     f"SELECT app_user.name_, app_user.email, doctor.speciality \
         FROM (doctor JOIN app_user ON doctor.id = app_user.id) \
-        WHERE app_user.name_ LIKE '%{user_input}%'"
+        WHERE app_user.name_ LIKE '%{user_input}%'\
+        AND doctor.speciality LIKE '%{speciality}%'"
 ).fetchall()
 ```
 
@@ -120,7 +121,9 @@ cur.execute(
 doctors = cur.execute(
     "SELECT app_user.name_, app_user.email, doctor.speciality \
         FROM (doctor JOIN app_user ON doctor.id = app_user.id) \
-        WHERE app_user.name_ LIKE ?" , ('%' + user_input + '%')
+        WHERE app_user.name_ LIKE ? \
+        AND doctor.speciality LIKE ?" , 
+        ('%' + user_input + '%' , '%' + speciality + '%')
 ).fetchall()
 ```
 
