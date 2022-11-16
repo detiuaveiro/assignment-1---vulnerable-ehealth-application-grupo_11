@@ -1,5 +1,22 @@
 # eHealth Corp
 
+1. [Descrição do Projeto](#descrição-do-projeto)
+2. [Aplicação Insegura](#aplicação-insegura)
+3. [Analise de Vulnerabilidades](#análise-de-vulnerabilidades)
+    - [CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')](#cwe-79-improper-neutralization-of-input-during-web-page-generation-cross-site-scripting)
+    - [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](#cwe-89-improper-neutralization-of-special-elements-used-in-an-sql-command-sql-injection)
+    - [CWE-209: Generation of Error Message Containing Sensitive Information](#cwe-209-generation-of-error-message-containing-sensitive-information)
+    - [CWE-257: Storing Passwords in a Recoverable Format](#cwe-257-storing-passwords-in-a-recoverable-format)
+    - [CWE-352: Cross-Site Request Forgery (CSRF)](#cwe-352-cross-site-request-forgery-csrf)
+    - [CWE-400: Uncontrolled Resource Consumption ('Resource Exhaustion')](#cwe-400-uncontrolled-resource-consumption-resource-exhaustion)
+    - [CWE-434: Unrestricted Upload of File with Dangerous Type](#cwe-434-unrestricted-upload-of-file-with-dangerous-type)
+    - [CWE-521: Weak Password Requirements](#cwe-521-weak-password-requirements)
+    - [CWE-620: Unverified Password Change](#cwe-620-unverified-password-change)
+    - [CWE-862: Missing Authorization](#cwe-862-missing-authorization)
+4. [Conclusão](#conclusão)
+
+---
+
 ## Descrição do Projeto
 eHealth Corp é uma aplicação web de uma clínica, que oferece aos seus utilizadores serviços médicos de diferentes especialidades.
 
@@ -54,7 +71,7 @@ As vulnerabilidades presentes na versão insegura são as seguintes:
 
 ## Análise de vulnerabilidades
 
-### CWE-79: Cross-site Scripting
+### CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
 
 #### Descrição
 Cross-site Scripting é uma vulnerabilidade de segurança que permite que um atacante execute scripts do lado do cliente (geralmente JavaScript) em páginas da Web. Quando outros utilizadores carregarem as páginas afetadas, os scripts maliciosos serão executados, permitindo que o atacante obtenha cookietokens de sessões ou outras informações.

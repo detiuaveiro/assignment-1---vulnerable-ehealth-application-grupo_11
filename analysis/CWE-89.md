@@ -3,10 +3,9 @@
 
 ---
 ## Descrição
+SQL Injection é uma vulnerabilidade que permite que um atacante injete código SQL malicioso numa *query*, por intermédio de inputs, cujos valores são guardados numa base de dados relacional. Além disso, os comandos que precedem o código injetado podem ser neutralizados, comprometendo a segurança do sistema, nomeadamente no processo de autenticação.
 
-O utilizador pode preencher campos de *input* no website com texto que será utilizado na query SQL, sem qualquer tratamento. 
-
-Esta vulnerabilidade está presente em 3 páginas do website:
+Está presente em 3 páginas do website:
 - Login
 - Register
 - Doctors
@@ -15,16 +14,19 @@ Esta vulnerabilidade está presente em 3 páginas do website:
 ```python
 conn = sqlite3.connect('db.sqlite3')
 cur = conn.cursor()
+
 # login
 user = cur.execute(
     f"SELECT * FROM app_user \
         WHERE ( email = '{email}' ) AND ( password_ = '{password}')"
     ).fetchone()
+
 # register
 cur.executescript(
     f"INSERT INTO app_user (email, password_, name_) \
         VALUES ('{email}', '{password}', '{full_name}');"
 )
+
 # doctors
 doctors = cur.execute(
     f"SELECT app_user.name_, app_user.email, doctor.speciality \
@@ -34,74 +36,58 @@ doctors = cur.execute(
 ).fetchall()
 ```
 
-Isso permite que o utilizador insira código SQL, que será executado pelo servidor.
-
 ---
 ## Explorar a vulnerabilidade
 
 ### Login
 
-O utilizador consegue entrar com um email existente e uma password errada, se inserir na password:
+O utilizador consegue entrar com um email existente e uma password errada, se inserir no campo 'password':
 ```sql
 ' or 1=1 ) -- //
 ```
-
 # TODO -> Mostrar screenshots
 
-Também consegue entrar com o primeiro utilizador da base de dados, se inserir na password:
+Também consegue entrar com o primeiro utilizador da base de dados, se inserir no campo 'password':
 ```sql
 ') or 1=1 -- //
 ```
-
-Neste caso, o primeiro utilizador da base de dados é o admin e tem acesso a uma página que permite controlar a base de dados.
-
+Neste caso, o primeiro utilizador da base de dados é o **admin**, o qual tem acesso a uma página que permite controlar a base de dados.
 # TODO -> Mostrar screenshots
-
 Desta forma, o utilizador consegue aceder a uma conta de outro utilizador, ou gerir a base de dados.
 
 <br>
 
 ### Register
-
-Nesta página, o utilizador consegue executar multiplas queries SQL, por exemplo, se inserir no nome:
+Nesta página, o utilizador consegue executar múltiplas *queries* SQL, por exemplo, se inserir no campo 'first_name':
 ```sql
 '); DROP TABLE app_user; -- //
 ```
-
 # TODO -> Mostrar screenshots
 
-Desta forma utilizador pode executar qualquer query SQL na base de dados.
 
 <br>
 
 ### Doctors
-
-O utilizador pode executar uma query SQL de cada vez ao inseri-la no campo de pesquisa.
-
-Por exemplo, para obter todas as tabelas e colunas da base de dados:
+Nesta página, o utilizador consegue obter todas as tabelas e colunas da base de dados, se inserir na caixa de pesquisa:
 ```sql
 1' AND 1=2 UNION SELECT sql,1,1 FROM sqlite_master WHERE type='table' -- //
 ```
-
 # TODO -> Mostrar screenshots
 
-Para obter os nomes, emails e passwords de todos os utilizadores:
+Ou obter os nomes, emails e passwords de todos os utilizadores, inserindo na caixa de pesquisa:
 ```sql
 1' AND 1=2 UNION SELECT name_, email, password_ FROM app_user -- //
 ```
-
 # TODO -> Mostrar screenshots
 
-Desta forma, o utilizador consegue aceder a qualquer informação da base de dados.
+Com esta vulnerabilidade, o utilizador consegue aceder a **qualquer informação** da base de dados.
 
 ---
 ## Solução
 
-Para evitar esta vulnerabilidade, é necessário tratar o input do utilizador, para que não seja possível executar queries SQL.
+Em SQLite, o '?' é um *placeholder* para um valor passado como argumento de um comando (por exemplo, um INSERT). Essa substituição dinâmica de valores, durante a compilação do comando, é designada por *binding*. Com este mecanismo, o utilizador não consegue injetar código SQL.
 
-O flask permite fazer esse tratamento se inserirmos as variaveis com os métodos dados.
-
-Também devemos mudar o método de execução no *register* para executar apenas uma query.
+Além disso, o uso do método ```executescript``` do módulo ```sqlite3```deve ser evitado, uma vez que permite a execução de múltiplos comandos SQL, favorecendo a vulnerabilidade em questão. Em vez disso, pode e deve ser usado o método ```execute```.
 
 **Código exemplo**:
 ```python
@@ -126,5 +112,3 @@ doctors = cur.execute(
         ('%' + user_input + '%' , '%' + speciality + '%')
 ).fetchall()
 ```
-
-Assim, é feito o tratamento do input do utilizador, evitando que seja possível executar queries SQL.

@@ -3,8 +3,9 @@
 
 ---
 ## Descrição
+Cross-site Scripting é uma vulnerabilidade que permite que um atacante execute scripts do lado do cliente, em páginas Web. Quando outros utilizadores carregam as páginas afetadas, os scripts maliciosos são executados pelo browser. Com isto, o atacante consegue aceder facilmente a cookies, tokens de sessões, entre outras informações.
 
-No *Feedback*, o utilizador insere um texto, que será exibido na própria página, sem qualquer tratamento.
+Na página *Feedback* da nossa aplicação, o utilizador insere um texto, que será exibido na própria página, sem qualquer tratamento.
 
 **Código exemplo**:
 ```jinja
@@ -31,15 +32,11 @@ Para esse efeito, basta inserir um texto com código HTML na mensagem de feedbac
 
 # TODO -> Mostrar screenshots
 
-Desta forma, o utilizador consegue fazer vários ataques XSS, como por exemplo:
-- Ler cookies do utilizador (por exemplo, o cookie de sessão) e enviá-los para um servidor remoto
-- Redirecionar o utilizador para um site malicioso
-- etc.
 
 ---
 ## Solução
 
-Para corrigir esse problema, é necessário que o texto seja tratado antes de ser inserido no HTML. Para isso, é possível utilizar o filtro `escape` do Flask, neste caso, como é feito automaticamente, basta remover o `autoescape false` do código.
+Para corrigir este problema, é necessário que o texto seja tratado, antes de ser apresentado. O Flask disponibiliza um filtro ```escape```, com esse intuito, pelo que nos bastou remover o ```autoescape false``` do código, para que ele funcionasse.
 
 **Código exemplo**:
 ```jinja
@@ -49,8 +46,4 @@ Para corrigir esse problema, é necessário que o texto seja tratado antes de se
     </p>
 {% endfor %}
 ```
-
-<br>
-
-Desta forma, o texto será tratado antes de ser inserido no HTML, e o código HTML não será executado.
 
