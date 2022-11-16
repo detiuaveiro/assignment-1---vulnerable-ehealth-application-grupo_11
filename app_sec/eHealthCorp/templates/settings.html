@@ -63,7 +63,11 @@ function toggle() {
 	} else {
 		x.style.display = "none";
 	}
-} 
+}
 </script>
+
+{% if error %}
+<script>toggle();</script>
+{% endif %}
 
 {% endblock %}

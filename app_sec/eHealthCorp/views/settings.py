@@ -1,33 +1,31 @@
 from flask import Blueprint, request, render_template, session, redirect, url_for
 from eHealthCorp import get_conn
+from flask_bcrypt import Bcrypt
 
 settings = Blueprint('settings', __name__)
 
 
 @settings.route('/settings', methods=('GET', 'POST'))
 def account_settings():
+    error = False
     if request.method == "POST":
         email = request.form["email"]
         current_password = request.form["current_password"]
         new_password = request.form["new_password"]
 
         conn, cur = get_conn()
-        user = cur.execute(
-            "SELECT * FROM app_user \
-            WHERE ( email = ? ) AND ( password_ = ? )", (email, current_password)
-        ).fetchone()
-        conn.close()
+        user = cur.execute("SELECT * FROM app_user WHERE email = ?", (email,)).fetchone()
 
-        if user == None:
-            return render_template("settings.html", error=True)
-    
-        result = cur.execute("UPDATE app_user SET password_ = ? WHERE email = ?", (new_password, email,))
-        conn.commit()
-        conn.close()
+        if user is None or not Bcrypt().check_password_hash(user[2], current_password):
+            error = True
+        else:
+            result = cur.execute("UPDATE app_user SET password_ = ? WHERE email = ?", (new_password, email,))
+            conn.commit()
+            conn.close()
 
-        #delete session_data
-        session.clear()
-        return redirect(url_for("auth.login"))
+            #delete session_data
+            session.clear()
+            return redirect(url_for("auth.login"))
 
 
     if "session_data" not in session:
@@ -46,4 +44,4 @@ def account_settings():
         "email": result[1]
     }
 
-    return render_template("settings.html", user_data=user_data)
+    return render_template("settings.html", user_data=user_data, error=error)

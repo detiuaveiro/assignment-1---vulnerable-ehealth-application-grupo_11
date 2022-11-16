@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS feedback;
 CREATE TABLE app_user (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email VARCHAR(40),
-    password_ VARCHAR(20) NOT NULL,
+    password_ VARCHAR(100) NOT NULL,
     name_ VARCHAR(40) NOT NULL,
     UNIQUE (email)
 );
