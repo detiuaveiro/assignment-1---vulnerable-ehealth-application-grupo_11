@@ -35,13 +35,13 @@
             
                     <div class="row" style="margin-top: 50px;">
                         <div class="col-12" id="change_password_div" style="display: none; text-align: center;">
-                            <input type="cpassword" id="cpassword" class="form-control" name="current_password" placeholder="Insert here your current password" required/>
+                            <input type="password" id="cpassword" class="form-control" name="current_password" placeholder="Insert here your current password" required/>
+                            <input type="password" id="npassword" class="form-control" name="new_password" placeholder="Insert here the new password" style="margin-top: 10px;" required/>
                             {% if error %}
-                            <div style="text-align: center;" style="margin-top: 10px;">
-                                <a style="font-weight: bold; color: red">Password incorrect</a>
+                            <div class="alert alert-danger" role="alert" style="margin-top: 10px">
+                              {{ error }}
                             </div>
                             {% endif %}
-                            <input type="npassword" id="npassword" class="form-control" name="new_password" placeholder="Insert here the new password" style="margin-top: 10px;" required/>
                             <button type="submit" class="btn btn-danger" style="margin-top: 10px">
                                 Submit change
                             </button>

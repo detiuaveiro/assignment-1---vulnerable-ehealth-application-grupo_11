@@ -102,3 +102,4 @@ id,email,password_,name_
 101,user1@example.com,User1234,User 1
 102,user2@example.com,User1234,User 2
 103,doctor1@example.com,Doctor1234,Doctor 1
+104,target@example.com,qwerty,Our Target

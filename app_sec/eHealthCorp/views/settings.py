@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, session, redirect, url_for
 from eHealthCorp import get_conn
 from flask_bcrypt import Bcrypt
+import re
 
 settings = Blueprint('settings', __name__)
 
@@ -17,8 +18,16 @@ def account_settings():
         user = cur.execute("SELECT * FROM app_user WHERE email = ?", (email,)).fetchone()
 
         if user is None or not Bcrypt().check_password_hash(user[2], current_password):
-            error = True
+            error = "Incorrect password"
+        elif (
+            not re.search(r"[A-Z]", new_password)
+            or not re.search(r"[a-z]", new_password)
+            or not re.search(r"[0-9]", new_password)
+            or len(new_password) < 8
+        ):
+            error = "Password must have 1 uppercase, 1 lowercase, 1 number, length >= 8"
         else:
+            new_password = Bcrypt().generate_password_hash(new_password).decode('utf-8')
             result = cur.execute("UPDATE app_user SET password_ = ? WHERE email = ?", (new_password, email,))
             conn.commit()
             conn.close()
