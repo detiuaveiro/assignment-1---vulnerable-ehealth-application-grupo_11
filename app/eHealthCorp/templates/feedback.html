@@ -22,9 +22,7 @@
             <div class="feedback-form">
                 <form action="/feedback" method="POST">
 
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
-                    <!-- Message -->
+                                <!-- Message -->
                     <div class="mb-3">
                         <label for="message" class="form-label">Message</label>
                         <textarea class="form-control" id="message" name="message" rows="3" required></textarea>

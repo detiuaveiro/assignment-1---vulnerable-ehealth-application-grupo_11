@@ -14,9 +14,7 @@
 
         <div class="col-6" style="margin: 20px auto auto auto;">
             <form action="/test_results" method="POST">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
-                <div class="mb-3">
+                        <div class="mb-3">
                     <label for="code" class="form-label">Insert the test code to get your test result:</label>
                     <input type="text" class="form-control" id="code" name="code" placeholder="Test code">
                     <!-- Error test not found -->

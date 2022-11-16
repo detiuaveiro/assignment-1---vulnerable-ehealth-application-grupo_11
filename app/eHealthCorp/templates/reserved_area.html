@@ -74,9 +74,7 @@
       <div class="col-6" style="margin: auto auto auto auto ;">
         <form method="POST" enctype="multipart/form-data">
 
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
-            <div class="mb-3">
+                <div class="mb-3">
               <label for="patientEmail" class="form-label">Patient Email</label>
               <input type="text" class="form-control" id="patientEmail" aria-describedby="patientEmail" name="patient_email" required>
             </div>

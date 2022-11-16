@@ -45,7 +45,6 @@
             <div class="col-6" id="change_password_div" style="display: none; text-align: center;">
 
                 <form method="post">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <input type="password" id="password" class="form-control" name="new_password" placeholder="Insert here the new password" required/>
                     <button type="submit" class="btn btn-danger" style="margin-top: 10px">
                         Change Password
