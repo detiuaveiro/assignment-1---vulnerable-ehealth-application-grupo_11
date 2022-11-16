@@ -16,8 +16,10 @@ def register():
 
         try:
             conn, cur = get_conn()
-            query = f"INSERT INTO app_user (email, password_, name_) VALUES ('{email}', '{password}', '{full_name}');"
-            cur.executescript(query)
+            cur.execute(
+                "INSERT INTO app_user (email, password_, name_) \
+                    VALUES (? ,?, ?);", (email, password, full_name)
+            )
             conn.commit()
             conn.close()
         except:
@@ -74,9 +76,9 @@ def login():
 
         conn, cur = get_conn()
         user = cur.execute(
-            f"SELECT * FROM app_user \
-                WHERE ( email = '{email}' ) AND ( password_ = '{password}') "
-            ).fetchone()
+            "SELECT * FROM app_user \
+            WHERE ( email = ? ) AND ( password_ = ? )", (email, password)
+        ).fetchone()
         conn.close()
 
         if user == None:

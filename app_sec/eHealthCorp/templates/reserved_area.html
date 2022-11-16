@@ -81,9 +81,16 @@
               <input type="text" class="form-control" id="patientEmail" aria-describedby="patientEmail" name="patient_email" required>
             </div>
             <div class="mb-3">
-              <label for="testResults" class="form-label">Test Results</label>
+              <label for="testResults" class="form-label">Test Results (.pdf, max size 10 mb)</label>
               <input class="form-control" type="file" id="testResults" name="results_file" required>
             </div>
+
+            {% if error %}
+              <div class="alert alert-danger" role="alert">
+                {{ error }}
+              </div>
+            {% endif %}
+
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
       </div>
@@ -92,5 +99,17 @@
   </div>
           
 </div>
+
+{% if error %}
+<script>
+  document.getElementById("testResults-tab").classList.add("active");
+  document.getElementById("testResults-tab-pane").classList.add("active");
+  document.getElementById("testResults-tab-pane").classList.add("show");
+  document.getElementById("shedule-tab").classList.remove("active");
+  document.getElementById("shedule-tab-pane").classList.remove("active");
+</script>
+
+{% endif %}
+
 
 {% endblock %}

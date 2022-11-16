@@ -5,55 +5,51 @@
 {% block content %}
 
 <div class="container" style="margin-top: 120px;"> 
+    <div class="account" style="width: 500px; margin: 200px auto 0 auto;">
+        <div class="card account-card">
 
-    <div>
-        <div style="text-align: center;"><h2>Account settings</h2></div>
-
-        <div class="row" style="margin-top: 50px;">
-            <div class="col-3"></div>
-            <div class ="col-6" >
-                    <table class="table table-striped">
-                        <tbody>
-                            <tr>
-                                <td><b>First name</b></td>
-                                <td style="text-align: end;">{{user_data.first_name}}</td>
-                            </tr>
-                            <tr>
-                                <td><b>Last name</b></td>
-                                <td style="text-align: end;">{{user_data.last_name}}</td>
-                            </tr>
-                            <tr>
-                                <td><b>Email</b></td>
-                                <td style="text-align: end;">{{user_data.email}}</td>
-                            </tr>
-                        </tbody>
-                </table>
+            <div style="text-align: center; margin: 35px 0 10px 0;">
+                <h1 class="card-title">Account settings</h1>
             </div>
-            <div class="col-3"></div>
-        </div>
 
-
-
-        <div style="margin-top: 30px; text-align: center;">
-            <button class="btn btn-primary" style="width: 200px" onclick="toggle()">
-                Change password
-            </button>    
-        </div>
-
-        <div class="row" style="margin-top: 50px;">
-            <div class="col-3"></div>
-            <div class="col-6" id="change_password_div" style="display: none; text-align: center;">
-
+            <div class="card-body py-5 px-md-5">
                 <form method="post">
+                    
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                    <input type="password" id="password" class="form-control" name="new_password" placeholder="Insert here the new password" required/>
-                    <button type="submit" class="btn btn-danger" style="margin-top: 10px">
-                        Change Password
-                    </button>  
-                </form>
 
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="name">Name</label>
+                        <input type="text" id="name" class="form-control disinput" value="{{ user_data.first_name }} {{ user_data.last_name }}" disabled/>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Email address</label>
+                        <input type="email" id="email" class="form-control disinput" name="email" value="{{ user_data.email }}" readonly/>
+                    </div>
+
+                    <div style="margin-top: 30px; text-align: center;">
+                        <button class="btn btn-primary" style="width: 200px" onclick="toggle()">
+                            Change password
+                        </button>    
+                    </div>
+            
+                    <div class="row" style="margin-top: 50px;">
+                        <div class="col-12" id="change_password_div" style="display: none; text-align: center;">
+                            <input type="cpassword" id="cpassword" class="form-control" name="current_password" placeholder="Insert here your current password" required/>
+                            {% if error %}
+                            <div style="text-align: center;" style="margin-top: 10px;">
+                                <a style="font-weight: bold; color: red">Password incorrect</a>
+                            </div>
+                            {% endif %}
+                            <input type="npassword" id="npassword" class="form-control" name="new_password" placeholder="Insert here the new password" style="margin-top: 10px;" required/>
+                            <button type="submit" class="btn btn-danger" style="margin-top: 10px">
+                                Submit change
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
             </div>
-            <div class="col-3"></div>
         </div>
     </div>
 </div>

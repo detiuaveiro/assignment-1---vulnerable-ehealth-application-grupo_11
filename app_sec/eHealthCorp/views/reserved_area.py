@@ -46,6 +46,18 @@ def show():
         patient_email = request.form['patient_email']
         file_ = request.files['results_file']
 
+        # check file size
+        if len(file_.read()) > 10 * 1024 * 1024:
+            return render_template("reserved_area.html", error="File size is too big")
+
+        # check file type
+        if file_.content_type != 'application/pdf':
+            return render_template("reserved_area.html", error="File type is not supported")
+
+        # check if patient exists
+        if cur.execute("SELECT * FROM app_user WHERE email = ?", (patient_email,)).fetchone() is None:
+            return render_template("reserved_area.html", error="Patient does not exist")
+
         try:
             file_data = file_.read()          
             cur.execute(

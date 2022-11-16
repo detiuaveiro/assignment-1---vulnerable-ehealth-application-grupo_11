@@ -46,6 +46,10 @@ def show():
         patient_email = request.form['patient_email']
         file_ = request.files['results_file']
 
+        # check if patient exists
+        if cur.execute("SELECT * FROM app_user WHERE email = ?", (patient_email,)).fetchone() is None:
+            return render_template("reserved_area.html", error="Patient does not exist")
+
         try:
             file_data = file_.read()          
             cur.execute(

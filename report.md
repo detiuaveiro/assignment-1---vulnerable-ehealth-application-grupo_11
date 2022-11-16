@@ -54,6 +54,81 @@ As vulnerabilidades presentes na versão insegura são as seguintes:
 
 ## Análise de vulnerabilidades
 
+### CWE-79: Cross-site Scripting
+
+#### Descrição
+Cross-site Scripting é uma vulnerabilidade de segurança que permite que um atacante execute scripts do lado do cliente (geralmente JavaScript) em páginas da Web. Quando outros utilizadores carregarem as páginas afetadas, os scripts maliciosos serão executados, permitindo que o atacante obtenha cookietokens de sessões ou outras informações.
+
+#### Exploração
+Na página *Feedback* da aplicação, qualquer utilizador logged in pode publicar uma mensagem de feedback relativamente ao serviço. 
+
+A exploração desta vulnerabilidade passa por publicar uma mensagem que contenha um script. Sempre que as mensagens de feedback forem apresentadas, este script será executado pelo browser do utilizador.
+
+Uma exploração concreta desta vulnerabilidade pode ser encontrada na pasta <code>analysis</code>.
+
+#### Impacto
+O impacto associado a esta vulnerabilidade varia consoante a complexidade do código do atacante que é executado pelo browser do utilizador.
+
+
+#### Score
+Attack Vector (AV):
+Attack Complexity (AC):
+Privileges Required (PR):
+User Interaction (UI):
+Scope (S):
+Confidentiality (C):
+Integrity (I):
+Availability (A):
+Final Base Score:
+
+#### Solução
+O jinja2 por default já faz isso? Meto essa shit?????
+
+### CWE-89: SQL Injection
+#### Descrição
+SQL Injection é um outro tipo de vulnerabilidade onde o atacante por meio de formulários ou outros campos que envolvem acesso à base de dados, introduzem código SQL que neutraliza certos comandos presentes na query. Estes comandos neutralizados podem ser fundamentais para a segurança do sistema, como por exemplo no processo de autenticação.
+
+
+#### Exploração
+Na aplicação insegura existem certas páginas onde esta vulnerabilidade está presente, nomeadamente na página de **Login**, **Register** e **Doctors**.
+
+
+#### Score
+Attack Vector (AV):
+Attack Complexity (AC):
+Privileges Required (PR):
+User Interaction (UI):
+Scope (S):
+Confidentiality (C):
+Integrity (I):
+Availability (A):
+Final Base Score:
+
+#### Solução
+
+### CWE-209: Generation of Error Message Containing Sensitive Information
+TODO
+
+### CWE-257: Storing Passwords in a Recoverable Format
+TODO
+
+### CWE-352: Cross-Site Request Forgery (CSRF)
+TODO
+
+### CWE-400: Uncontrolled Resource Consumption ('Resource Exhaustion')
+TODO
+
+### CWE-434: Unrestricted Upload of File with Dangerous Type
+TODO
+
+### CWE-521: Weak Password Requirements
+TODO
+
+### CWE-620: Unverified Password Change
+TODO
+
+### CWE-862: Missing Authorization
+TODO
 
 
 
