@@ -2,6 +2,7 @@ from flask import Flask
 import sqlite3
 
 app = Flask(__name__)
+app.config['SESSION_COOKIE_HTTPONLY'] = False
 
 
 def get_conn():

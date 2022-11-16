@@ -21,15 +21,17 @@ Deste modo, o utilizador consegue injetar HTML e até mesmo executar código Jav
 ---
 ## Explorar a vulnerabilidade
 
-Para esse efeito, basta inserir um texto com código HTML na mensagem de feedback.
+Para esse efeito, basta inserir um excerto de HTML, na mensagem de feedback.
 
 **Código exemplo**:
 ```html
-<script>alert('XSS')</script>
+<script>
+    alert(document.cookie);
+</script>
 ```
+>*Nota*: Em client-side scripts, não é possível aceder a cookies com a flag ```HTTPOnly```. Porém, se essa flag tiver valor 'false', o cookie é exibido, usando o código acima. Abordamos este tópico na vulnerabilidade [CWE-1004](CWE-1004.md).
 
 # TODO -> Mostrar screenshots
-
 
 ---
 ## Solução
