@@ -704,3 +704,4 @@ Além disso, consideramos que a eliminação dessas vulnerabilidades deve ser pr
 ### Score Total: 75.0
 
 ### Score Médio: 6.8
+
