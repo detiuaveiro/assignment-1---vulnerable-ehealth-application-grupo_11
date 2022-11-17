@@ -128,7 +128,7 @@ Vector String: [CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:H](https://www.first.
 
 
 #### Solução
-Para corrigir este problema, é necessário que o texto seja tratado, antes de ser apresentado. Nesse sentido, o Jinja (mecanismo de templating que o Flask usa) ativa o *autoescaping*, por defeito, para todas as páginas HTML renderizadas com o método ```render_template()```, algo que é imcompatível com o filtro ```safe```, que identifica um excerto dinâmico de HTML como seguro.
+Para corrigir este problema, é necessário que o texto seja tratado, antes de ser apresentado. Nesse sentido, o Jinja (mecanismo de templating que o Flask usa) ativa o *autoescaping*, por defeito, para todas as páginas HTML renderizadas com o método ```render_template()```, algo que é incompatível com o filtro ```safe```, que identifica um excerto dinâmico de HTML como seguro.
 
 Código exemplo:
 ```jinja
@@ -296,7 +296,7 @@ except:
 
 Na nossa aplicação insegura, esta vulnerabilidade está presente no registo de novos utilizadores, já que a password é armazenada em *plain text*.
 
-Codigo exemplo:
+Código exemplo:
 ```python
 conn = sqlite3.connect('db.sqlite3')
 cur = conn.cursor()
@@ -326,12 +326,12 @@ Ver [análise](analysis/CWE-257.md).
 Vector String: [CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N](https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N)
 
 #### Solução
-Para evitar este tipo de vulnerabilidade, com potencial para comprometer a intregridade do sistema, todas as passwords devem ser alvo de um processo de *hashing*.
+Para evitar este tipo de vulnerabilidade, com potencial para comprometer a integridade do sistema, todas as passwords devem ser alvo de um processo de *hashing*.
 Um *hash* deve ser imprevisível e único, de forma a que não seja possível descobrir a password original.
 
 Na versão segura da aplicação, recorremos ao módulo ```Flask-Bcrypt```, que disponibiliza uma *hash function* e um método de verificação de password.
 
-Codigo exemplo:
+Código exemplo:
 ```python
 conn = sqlite3.connect('db.sqlite3')
 cur = conn.cursor()
@@ -512,7 +512,7 @@ if request.method == "POST":
 
 Este problema pode ser encontrado na página *Register*, onde não é verificado se a password inserida pelo utilizador é robusta o suficiente. Caso a password escolhida seja demasiado simples, um atacante pode recorrer a técnicas *brute force*, para forçar o login.
 
-Codigo exemplo:
+Código exemplo:
 ```python
 conn = sqlite3.connect('db.sqlite3')
 cur = conn.cursor()
@@ -545,7 +545,7 @@ Vector String: [CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:N](https://www.first.
 #### Solução
 Para corrigir este problema, é necessário verificar se a password inserida pelo utilizador é robusta o suficiente. Uma boa abordagem é criar regras para a sua escolha: conter letras maiúsculas, minúsculas, números, ter um tamanho mínimo, etc.
 
-Codigo exemplo:
+Código exemplo:
 ```python
 conn = sqlite3.connect('db.sqlite3')
 cur = conn.cursor()
@@ -627,9 +627,9 @@ Código exemplo:
 ```python
 @test_results.route("/test_results", methods=["GET", "POST"])
 def show():
-    # MISSING -> Verifify user
+    # MISSING -> Verify user
     if request.method == 'POST':
-        # MISSING -> Verifify input
+        # MISSING -> Verify input
         ...
 ```
 
