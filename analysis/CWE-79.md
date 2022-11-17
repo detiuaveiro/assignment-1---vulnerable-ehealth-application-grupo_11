@@ -42,6 +42,6 @@ Submeter o feedback.
 ![CWE-79](images/CWE-79_image1.png)
 
 ### Resultado
-O código JavaScript é executado. No exemplo, é apresentado um *alert* com o conteúdo "CWE-79 XSS".
+Sempre que um utilizador entrar na página, o código JavaScript é executado. No exemplo, é apresentada uma *alert box* com o conteúdo "CWE-79 XSS".
 
 ![CWE-79](images/CWE-79_image2.png)

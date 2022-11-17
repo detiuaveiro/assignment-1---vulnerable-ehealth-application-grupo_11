@@ -398,12 +398,13 @@ curl -X POST http://localhost:[PORT]/settings\
 ```
 RESPOSTA:
 ```html
-<!-- Bad Request: o pedido não inclui o CSRF token -->
 <!doctype html>
 <html lang=en>
-<title>400 Bad Request</title>
+    <title>400 Bad Request</title>
 <h1>Bad Request</h1>
 <p>The CSRF token is missing.</p>
+
+<!-- Bad Request: o pedido não inclui o CSRF token -->
 ```
 
 <br>
