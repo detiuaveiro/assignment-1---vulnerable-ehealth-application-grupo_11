@@ -38,4 +38,6 @@
 
 [CWE-862: Missing Authorization](analysis/CWE-862.md)
 
+[CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag](analysis/CWE-1004.md)
+
 >*Obs*: Cada link remete para a análise de uma vulnerabilidade. A descrição, o score e a solução encontrada para cada uma delas encontram-se no [relatório](report.md).

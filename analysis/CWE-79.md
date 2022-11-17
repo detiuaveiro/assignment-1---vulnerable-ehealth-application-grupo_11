@@ -1,49 +1,38 @@
 ## CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
 - https://cwe.mitre.org/data/definitions/79.html
 
----
-## Descrição
-Cross-site Scripting é uma vulnerabilidade que permite que um atacante execute scripts do lado do cliente, em páginas Web. Quando outros utilizadores carregam as páginas afetadas, os scripts maliciosos são executados pelo browser. Com isto, o atacante consegue aceder facilmente a cookies, tokens de sessões, entre outras informações.
-
-Na página *Feedback* da nossa aplicação, o utilizador insere um texto, que será exibido na própria página, sem qualquer tratamento.
-
-**Código exemplo**:
-```jinja
-{% for msg in feedback %}
-    <p>
-        {{ msg.message | safe }}
-    </p>
-{% endfor %}
-```
-
-Deste modo, o utilizador consegue injetar HTML e até mesmo executar código JavaScript, dentro de um marcador ```<script>```.
+**Ver descrição, score e solução no [report.md](../report.md#cwe-79-improper-neutralization-of-input-during-web-page-generation-cross-site-scripting).**
 
 ---
-## Explorar a vulnerabilidade
-
+## Exploração da vulnerabilidade
 Para esse efeito, basta inserir um excerto de HTML, na mensagem de feedback.
 
+### Negação de serviço
 **Código exemplo**:
 ```html
 <script>
-    alert(document.cookie);
+    window.location.href = "[RANDOM_URL]";
 </script>
 ```
->*Nota*: Em client-side scripts, não é possível aceder a cookies com a flag ```HTTPOnly```. Porém, se essa flag tiver valor 'false', o cookie é exibido, usando o código acima. Abordamos este tópico na vulnerabilidade [CWE-1004](CWE-1004.md).
 
-# TODO -> Mostrar screenshots
+Com este ataque, o serviço a que o utilizador está a tentar aceder (*Feedback*) deixa de estar disponível.
 
----
-## Solução
+**Redirecionamento para um URL externo**:
 
-Para corrigir este problema, é necessário que o texto seja tratado, antes de ser apresentado. Nesse sentido, o Jinja (mecanismo de templating que o Flask usa) ativa o *autoescaping*, por defeito, para todas as páginas HTML renderizadas com o método ```render_template()```, algo que é imcompatível com o filtro ```safe```, que identifica um excerto dinâmico de HTML como seguro.
+```RANDOM_URL = "[EXTERNAL_URL]"```
 
-**Código exemplo**:
-```jinja
-{% for msg in feedback %}
-    <p>
-        {{ msg.message }}
-    </p>
-{% endfor %}
-```
+Este URL pode ser malicioso.
 
+**Redirecionamento para um URL interno (*loop*)**:
+
+```RANDOM_URL = "http://localhost:[PORT]/feedback"```
+
+Se vários utilizadores acederem a esta página, o servidor pode ficar sobrecarregado, pois vai redirecionar infinitamente para o mesmo URL, em simultâneo.
+
+### Roubos de sessão
+Também é possível realizar outro tipo de ataques como, por exemplo, roubar cookies de sessão. Abordámos esse tópico na análise da vulnerabilidade [CWE-1004](CWE-1004.md).
+
+## Exemplo
+![CWE-79](images/CWE-79_image1.png)
+
+![CWE-79](images/CWE-79_image2.png)
