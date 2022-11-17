@@ -37,12 +37,14 @@ SELECT * FROM app_user WHERE ( email = '[RANDOM_MAIL]' )
 
 O atacante entra na conta, mesmo desconhecendo a password da vítima.
 
+<br>
+
 ## Ataque: login na conta do administrador
 ### Conhecimento prévio 
 O atacante sabe que é provável que o utilizador com id = 1 seja um administrador do sistema.
 
 ### Passo 1
-Aceder à página de login e inserir um email existente e no campo 'Password' o seguinte excerto de código SQL:
+Aceder à página de login e inserir um email existente e, no campo 'Password', o seguinte excerto de código SQL:
 ```sql
 ') or 1=1 -- //
 ```
@@ -77,13 +79,15 @@ O atacante consegue aceder e modificar o conteúdo da base de dados.
 ### Conhecimento prévio
 O atacante sabe que a tabela 'app_user' pode conter os utilizadores registados no sistema.
 
-Esse nome é o predefinido por algumas aplicações web, por exemplo, as que desenvolvidas em Django (outra framework web Python).
+Esse nome é o predefinido por algumas aplicações web, por exemplo, as que sdesenvolvidas em Django (outra framework web Python).
 
 ### Passo 1
-Aceder à página de registo de um utilizador (não doutor) e inserir no campo 'First Name' o seguinte excerto de código SQL:
+Aceder à página de registo de um utilizador (não doutor) e inserir num dos campos o seguinte excerto de código SQL:
 ```sql
 '); DROP TABLE app_user; -- //
 ```
+
+>**Nota**: A ordem das colunas no INSERT não é conhecida, pelo que o atacante deve testar os vários campos, até conseguir a SQL injection. Neste caso concreto, funcionaria no campo 'First Name'/'Last Name'.
 
 ### Passo 2
 Submeter o formulário de registo.
@@ -93,7 +97,7 @@ Submeter o formulário de registo.
 ### Resultado
 É executado o seguinte comando SQL:
 ```sql
-INSERT INTO app_user (email, password_, name_) VALUES (''); DROP TABLE app_user; -- //
+INSERT INTO app_user (email, password_, name_) VALUES ('random@random.com', 'Random1234', ''); DROP TABLE app_user; -- //
 ```
 equivalente a
 ```sql
@@ -167,4 +171,4 @@ SELECT name_, email, password_ FROM app_user
 
 ![CWE-89](images/CWE-89_image7.png)
 
-O atacante fica a conhecer as credenciais de todos utilizadores, incluindo o admin e os doutores. Como as passwords estão em [*plain text*](CWE-257.md), o atacante consegue apoderar-se de qualquer conta.
+O atacante fica a conhecer as credenciais de todos utilizadores, incluindo o admin e os doutores. Como as passwords estão em [*plain text*](CWE-257.md), consegue apoderar-se de qualquer conta.
