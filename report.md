@@ -116,6 +116,8 @@ Vector String: [CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:L/A:H](https://www.first.
 #### Solução
 Para corrigir este problema, é necessário que o texto seja tratado, antes de ser apresentado. Nesse sentido, o Jinja (mecanismo de templating que o Flask usa) ativa o *autoescaping*, por defeito, para todas as páginas HTML renderizadas com o método ```render_template()```, algo que é incompatível com o filtro ```safe```, que identifica um excerto dinâmico de HTML como seguro.
 
+O filtro deve, por isso, ser retirado.
+
 Código exemplo:
 ```jinja
 {% for msg in feedback %}
@@ -184,7 +186,7 @@ Vector String: [CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H](https://www.first.
 #### Solução
 Em SQLite, o '?' é um *placeholder* para um valor passado como argumento de um comando (por exemplo, um INSERT). Essa substituição dinâmica de valores, durante a compilação do comando, é designada por *binding*. Com este mecanismo, o utilizador não consegue injetar código SQL.
 
-Além disso, o uso do método ```executescript``` do módulo ```sqlite3```deve ser evitado, uma vez que permite a execução de múltiplos comandos SQL, favorecendo a vulnerabilidade em questão. Em vez disso, pode e deve ser usado o método ```execute```.
+Além disso, o uso do método ```executescript``` do módulo ```sqlite3``` deve ser evitado, uma vez que permite a execução de múltiplos comandos SQL, favorecendo a vulnerabilidade em questão. Em vez disso, pode e deve ser usado o método ```execute```.
 
 Código exemplo:
 ```python
@@ -216,7 +218,7 @@ doctors = cur.execute(
 #### Descrição
 Esta vulnerabilidade consiste na geração de mensagens de erro que contêm informações sensíveis do utilizador. Um atacante pode servir-se disso, para explorar outras vulnerabilidades como, por exemplo, a da SQL Injection.
 
-Na página *Doctors*, é executada uma *query* de procura à base de dados. Caso esta não seja bem sucedida, é apresentada uma exceção do módulo ```sqlite3``` do Python, contendo informação sensível.
+Na página *Doctors*, é executado um SELECT na agregação de duas tabelas da base de dados. Caso este não seja bem sucedido, é apresentada uma exceção do módulo ```sqlite3``` do Python, contendo informação sensível.
 
 Código exemplo:
 ```python
@@ -375,14 +377,16 @@ Se tentarmos explorar novamente a vulnerabilidade, o servidor não aceita o pedi
 
 Código exemplo:
 
-PEDIDO:
+PEDIDO
 ```bash
-# Ataque CSRF sem sucesso: alterar a password do utilizador com email "target@example.com" para "xyz"
 curl -X POST http://localhost:[PORT]/settings\
 -H "Content-Type: application/x-www-form-urlencoded"\
 -d "email=target@example.com&new_password=xyz"
+
+# Ataque CSRF sem sucesso: alterar a password do utilizador com email "target@example.com" para "xyz"
 ```
-RESPOSTA:
+
+RESPOSTA
 ```html
 <!doctype html>
 <html lang=en>
@@ -400,7 +404,7 @@ RESPOSTA:
 
 *Uncontrolled Resource Consumption*, também designada por *Resource Exhaustion*, é uma vulnerabilidade que surge em sistemas que carecem de um mecanismo de verificação e gestão de recursos limitados, como é o caso da memória e disco. Este problema pode conduzir a uma exaustão dos recursos disponíveis, afetando assim o normal desempenho do serviço, a sua estabilidade e ainda a sua segurança.
 
-Na página *Reserved Area* e na aba *Upload Test Results* da aplicação insegura, visto que não existe qualquer mecanismo de verificação das características do ficheiro submetido, caso um atacante faça *upload* de vários ficheiros com tamanho elevado, este pode causar um *denial of service* no servidor e, por sua vez, comprometer o desempenho e segurança do sistema.
+Na página *Reserved Area* e na aba *Upload Test Results* da aplicação insegura, visto que não existe qualquer mecanismo de verificação das características do ficheiro submetido, caso um atacante faça *upload* de vários ficheiros com tamanho elevado, pode causar um *denial of service* no servidor.
 
 
 Código exemplo:
@@ -480,7 +484,7 @@ Vector String: [CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N](https://www.first.
 
 #### Solução
 A abordagem mais intuitiva para evitar esta vulnerabilidade consiste em proceder à verificação do tipo do ficheiro submetido.
-Embora não impeça totalmente a exploração da vulnerabilidade, é possível limitar o tipo de ficheiros que podem ser enviados, para ficheiros com extensão `.pdf`, por exemplo.
+Embora não impeça totalmente a exploração da vulnerabilidade, é possível limitar o tipo de ficheiros que podem ser enviados, de acordo com a extensão (`.pdf`, por exemplo).
 
 Código exemplo:
 ```python
@@ -504,7 +508,7 @@ Código exemplo:
 conn = sqlite3.connect('db.sqlite3')
 cur = conn.cursor()
 if request.method == "POST":
-    # Missing password strength validation
+    # MISSING -> password strength validation
     cur.executescript(
         f"INSERT INTO app_user (email, password_, name_) \
             VALUES ('{email}', '{password}', '{full_name}');"
@@ -599,6 +603,12 @@ if request.method == "POST":
     email = request.form["email"]
     current_password = request.form["current_password"]
     new_password = request.form['new_password']
+    
+    conn, cur = get_conn()
+    user = cur.execute("SELECT * FROM app_user WHERE email = ?", (email,)).fetchone()
+
+    if user is None or not Bcrypt().check_password_hash(user[2], current_password):
+        error = "Incorrect password"
     ...
 ```
 
@@ -680,18 +690,16 @@ Ver [análise](analysis/CWE-1004.md).
 Vector String: [CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N](https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N)
 
 #### Solução
-Para evitar esta vulnerabilidade apenas é necessário configurar a aplicação de modo que ativar a flag *HttpOnly*.
-
-No caso da aplicação desenvolvida, a solução passa simplesmente por ativar a flag *HttpOnly* no flask.
+Para evitar esta vulnerabilidade, apenas é necessário ativar a flag *HttpOnly*, nas configurações da aplicação.
 
 <br>
 
 ---
 
 ## Conclusão
-Depois de avaliarmos as vulnerabilidades encontradas, podemos concluir que a primeira versão da aplicação desenvolvida é extremamente insegura.
+Depois de avaliarmos as vulnerabilidades encontradas, concluímos que a primeira versão da aplicação desenvolvida é extremamente insegura.
 
-A eliminação das vulnerabilidades deve ser priorizada, em função dos scores. No entanto, é importante realçar que estes são apenas estimativas subjetivas da gravidade das vulnerabilidades.
+Além disso, consideramos que a eliminação dessas vulnerabilidades deve ser priorizada, em função dos scores. No entanto, é importante salientar que estes são apenas estimativas subjetivas da gravidade das vulnerabilidades.
 
 ### Score Total: 75.0
 
