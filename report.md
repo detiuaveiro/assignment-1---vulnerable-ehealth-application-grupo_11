@@ -45,7 +45,7 @@ Enquanto médico, é também possível:
 - Aceder à lista de consultas marcadas pelos pacientes
 - Submeter resultados dos testes dos pacientes
 
-Para fins educacionais foram desenvolvidas duas versões da aplicação, uma versão insegura e uma versão segura.
+Para fins académicos, foram desenvolvidas duas versões da aplicação: uma insegura e outra "segura" (isto é, que foi sujeita à eliminação das **vulnerabilidades exploradas**). É de realçar que, em Cibersegurança, não devemos assumir que um sistema é 100% seguro, pelo que poderá haver sempre mais vulnerabilidades por descobrir.
 
 De modo a facilitar a exploração de vulnerabilidades foram criados os seguintes utilizadores:
 
@@ -56,7 +56,7 @@ De modo a facilitar a exploração de vulnerabilidades foram criados os seguinte
 | doctor1@example.com | Doctor1234 | Médico |
 | target@example.com | qwerty | Paciente |
 
-*Nota*: Existem mais utilizadores registados na aplicação, mas apenas os utilizadores acima mencionados são utilizados para fins de exploração de vulnerabilidades.
+*Nota*: Existem mais utilizadores registados na aplicação, mas apenas estes foram utilizados para a exploração de vulnerabilidades.
 
 <br>
 
@@ -64,25 +64,11 @@ De modo a facilitar a exploração de vulnerabilidades foram criados os seguinte
 
 ## Aplicação insegura
 
-Como dito anteriormente, foi desenvolvida uma versão insegura da aplicação (<code>app</code>). Esta versão apresenta diferentes tipos de vulnerabilidades, vulnerabilidades essas que podem ser exploradas e por sua vez comprometer a segurança, integridade e usabilidade do sistema.
+Como dito anteriormente, foi desenvolvida uma versão insegura da aplicação (<code>app</code>). Esta apresenta diferentes tipos de vulnerabilidades que, sendo exploradas, podem comprometer a segurança, integridade e usabilidade do sistema.
 
-Ao longo deste relatório, para cada vulnerabilidade da aplicação iremos apresentar uma breve descrição, justificar o score atribuído, como pode ser explorada, o impacto associado e por fim uma possível solução.
+Neste relatório, para cada vulnerabilidade da aplicação, iremos apresentar uma breve descrição, indicar o score atribuído, expor uma possível solução e remeter para o respetivo ficheiro de exploração.
 
-As vulnerabilidades presentes na versão insegura são as seguintes:
-
-- CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
-- CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
-- CWE-209: Generation of Error Message Containing Sensitive Information
-- CWE-257: Storing Passwords in a Recoverable Format
-- CWE-352: Cross-Site Request Forgery (CSRF)
-- CWE-400: Uncontrolled Resource Consumption ('Resource Exhaustion')
-- CWE-434: Unrestricted Upload of File with Dangerous Type
-- CWE-521: Weak Password Requirements
-- CWE-620: Unverified Password Change
-- CWE-862: Missing Authorization
-- CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag
-
-De modo a classificar as vulnerabilidades, foi utilizado o [CVSS](https://www.first.org/cvss/calculator/3.1) (Common Vulnerability Scoring System), que é um sistema de classificação de vulnerabilidades que permite a comparação de vulnerabilidades de forma a que se possa ter uma ideia de quais são as mais críticas.
+De modo a classificar as vulnerabilidades, foi utilizado o [CVSS](https://www.first.org/cvss/calculator/3.1) (Common Vulnerability Scoring System), que é um sistema de classificação de vulnerabilidades. Ao permitir a sua comparação, podemos aferir quais são as mais críticas.
 
 <br />
 
