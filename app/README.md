@@ -5,10 +5,17 @@ Dentro da pasta ```app```, execute os seguintes comandos no terminal:
 
 ```docker build -t [NOME_IMAGEM] .```
 
-### Execução da imagem Docker com a aplicação
-De seguida, execute o seguinte comando:
+Exemplo:
 
-```docker run --name [NOME_CONTAINER] -p 8001:[PORTA] [NOME_IMAGEM]:latest```
+```docker build -t app .```
+
+### Execução da imagem Docker com a aplicação
+
+```docker run --name [NOME_CONTAINER] -p [PORTA]:8001 [NOME_IMAGEM]:latest```
+
+Exemplo:
+
+```docker run --name app_container -p 8001:8001 app:latest```
 
 ### Acesso à aplicação
 A aplicação web estará disponível em http://localhost:[PORTA].
